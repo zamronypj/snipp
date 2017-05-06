@@ -19,7 +19,8 @@ Installation
 - Run `composer install`
 - Setup your virtual host and point `DocumentRoot` to `public` directory of this application
 - In application directory, create new directory `storages/logs` and `storages/caches`. Make sure both directories are writeable by web server, for example on Debian, run `chown www-data:www-data storages/logs`
-- Copy `app/config/app.php.example` to `app/config/app.php`, edit configuration to match your system
+- Copy `app/config/app.php.example` to `app/config/app.php`, edit configuration to match your system.
+- Make sure `migrations/migrate.sh` file is executable. If not, make it executable by running `chmod +x migrations/migrate.sh`.
 - Run `./migrations/migrate.sh [your_db_username] [your_db_name]` to setup MYSQL table schema. Replace `[your_db_username]` and `[your_db_name]` with your username and database name. Enter your password when prompted.
 
 Have fun.
