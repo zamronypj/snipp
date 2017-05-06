@@ -1,7 +1,7 @@
 Snipp
 -----
 
-Snippet-sharing web application built with Phalcon PHP framework
+Snippet-sharing web application built with Phalcon PHP framework.
 
 Requirement
 -----------
