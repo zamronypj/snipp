@@ -62,7 +62,7 @@ return [
         | Database password
         |
         */
-        'password' => 'P@ssword'
+        'password' => 'vJSC8zu8PXqaFG9f'
      ]
 
 ];
