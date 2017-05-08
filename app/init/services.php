@@ -87,3 +87,16 @@ $di->set('view', function() {
 $di->set('logger', function() {
     return new FileAdapter(LOGS_PATH . 'app.log');
 });
+
+$di->set('tokenGenerator', function() use($di) {
+    $securityObj = $di->get('security');
+    return new Snippet\Security\CsrfTokenGenerator($securityObj);
+});
+
+$di->set('responseGenerator', function() {
+    return new Snippet\Utility\JsonResponseGenerator();
+});
+
+$di->set('randomStr', function() {
+    return new Snippet\Utility\BasicRandomStringGenerator();
+});

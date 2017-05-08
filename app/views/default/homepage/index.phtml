@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="/assets/<?= $theme; ?>/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="/assets/<?= $theme; ?>/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/assets/<?= $theme; ?>/js/highlight/styles/default.css" rel="stylesheet" >
 </head>
 <body>
   <?= $this->partial('header'); ?>
@@ -20,9 +21,9 @@
   <?= $this->partial('footer'); ?>
 
   <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/assets/<?= $theme; ?>/js/jquery.min.js"></script>
   <script src="/assets/<?= $theme; ?>/js/materialize.min.js"></script>
+  <script src="/assets/<?= $theme; ?>/js/highlight/highlight.pack.js"></script>
   <script src="/assets/<?= $theme; ?>/js/init.js"></script>
-
   </body>
 </html>

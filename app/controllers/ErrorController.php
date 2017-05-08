@@ -11,7 +11,6 @@ class ErrorController extends BaseController {
     }
 
     public function error404Action() {
-        $this->logger->log('fux');
     }
 }
 

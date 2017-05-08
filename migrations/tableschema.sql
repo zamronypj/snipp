@@ -13,8 +13,8 @@ CREATE TABLE user_details (
     firstname VARCHAR(30) NOT NULL,
     lastname VARCHAR(30) NOT NULL,
     country VARCHAR(2) NOT NULL,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UNIQUE KEY userid_idx (user_id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -34,13 +34,19 @@ CREATE TABLE user_groups (
     FOREIGN KEY (group_id) REFERENCES groups(id)
 );
 
+CREATE TABLE categories (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    name VARCHAR(20) NOT NULL
+);
+
 CREATE TABLE snippets (
     id VARCHAR(7) PRIMARY KEY NOT NULL,
-    snippet TEXT NOT NULL,
+    title VARCHAR(50) NOT NULL,
+    content TEXT NOT NULL,
     user_id INT,  /* snippet can be created by non-user so user_id allow NULL and do not maintain integrity with users table */
     download_count INT NOT NULL DEFAULT 0,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     KEY userid_idx (user_id)
 );
 
@@ -53,3 +59,14 @@ CREATE TABLE acls (
     FOREIGN KEY (snippet_id) REFERENCES snippets(id),
     FOREIGN KEY (group_id) REFERENCES groups(id)
 );
+
+CREATE TABLE snippet_categories (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    snippet_id VARCHAR(7) NOT NULL,
+    category_id INT NOT NULL,
+    KEY categoryid_snippetid_idx (category_id, snippet_id),
+    KEY snippetid_idx (snippet_id),
+    FOREIGN KEY (snippet_id) REFERENCES snippets(id),
+    FOREIGN KEY (category_id) REFERENCES categories(id)
+);
+

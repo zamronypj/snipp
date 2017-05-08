@@ -8,5 +8,6 @@ fi
 
 username=$1
 dbname=$2
-
-mysql -u $username -p $dbname < tableschema.sql
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+input_sql_file="$script_dir/tableschema.sql"
+mysql -u $username -p $dbname < $input_sql_file

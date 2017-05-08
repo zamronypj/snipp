@@ -8,6 +8,7 @@ class BaseHomepageController extends BaseController {
         $this->view->setViewsDir(VIEWS_PATH. $this->config->theme. '/homepage/');
         $this->view->theme = $this->config->theme;
         $this->view->appName = $this->config->appName;
+        $this->view->appUrl = $this->config->appUrl;
     }
 }
 
