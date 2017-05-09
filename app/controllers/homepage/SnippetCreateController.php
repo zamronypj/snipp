@@ -13,7 +13,8 @@ class SnippetCreateController extends BaseHomepageController
 
     private function generateResponseData($snippetObj, $appUrl) {
         $snippetData =  new StdClass();
-        $snippetData->snippetId = $appUrl. 's/'. $snippetObj->id;
+        $snippetData->snippetId = $snippetObj->id;
+        $snippetData->snippetUrl = $appUrl. 's/'. $snippetObj->id;
         return $snippetData;
     }
 
@@ -31,21 +32,26 @@ class SnippetCreateController extends BaseHomepageController
             ));
     }
 
-    private function addSanitizedSnippet($actualSanitizedSnippet) {
+    private function addSanitizedSnippet($actualSanitizedSnippet, $snippetTitle) {
         $this->view->disable();
         $len = $this->config->maxSnippetIdLength;
         $appUrl = $this->config->appUrl;
         $snippet = new Snippets();
         $snippet->id = $this->randomStr->createRandomString($len);
-        $snippet->title = 'test';
+        $snippet->title = strlen($snippetTitle) ? $snippetTitle : 'Untitled';
         $snippet->content = $actualSanitizedSnippet;
         $snippet->save();
         return $this->outputJson($snippet, $appUrl);
     }
 
     private function handlePostAddSnippetAction() {
-        $actualSnippet = $this->request->getPost('snippet');
-        return $this->addSanitizedSnippet($actualSnippet);
+        $filter = new Filter();
+        $filter->add('specialchar', function($rawInput){
+             return filter_var($rawInput, FILTER_SANITIZE_SPECIAL_CHARS);
+        });
+        $actualSnippet = $filter->sanitize($this->request->getPost('snippet'), 'specialchar');
+        $snippetTitle = $filter->sanitize($this->request->getPost('snippetTitle'), 'string');
+        return $this->addSanitizedSnippet($actualSnippet, $snippetTitle);
     }
 
     public function indexAction() {

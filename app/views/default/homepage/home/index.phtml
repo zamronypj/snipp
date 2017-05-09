@@ -4,26 +4,45 @@
       <div class="row center">
         <h5 class="header col s12 light">Code-sharing made easy</h5>
       </div>
-      <div class="row center">
-        <form id="createsnippet" class="col s12" action="<?= $this->url->get('/create'); ?>" method="post">
+      <div id="formContainer" class="row center">
+        <form id="createsnippet" class="col s12">
           <input id="csrfToken" type="hidden" name="<?= $token->name; ?>" value="<?= $token->value; ?>">
-
           <div class="row">
             <div class="input-field col s12">
               <textarea id="snippet" name="snippet" class="materialize-textarea"></textarea>
-              <label for="snippet">Paste here</label>
+              <label for="snippet">Paste code here</label>
             </div>
           </div>
-
           <div class="row">
+            <div class="input-field col s12">
+              <input id="snippetTitle" name="snippetTitle" type="text" placeholder="Untitled">
+              <label for="snippetTitle">Title</label>
+            </div>
+          </div>
+          <div id="progressContainer" class="row hidden">
             <div class="progress">
                 <div class="indeterminate"></div>
             </div>
           </div>
           <div class="row center">
-            <button type="submit" class="btn-large waves-effect waves-light orange">Create Snippet</button>
+            <button id="btnCreateSnippet" type="button" class="btn-large waves-effect waves-light orange">Create Snippet</button>
           </div>
         </form>
+      </div>
+
+      <div id="statusContainer" class="row center hidden">
+          <div id="resultContainer" class="row">
+               <a id="snippetUrl"></a>
+          </div>
+
+          <div id="errorContainer" class="row hidden">
+               <div id="errorMsg" class="red"></div>
+          </div>
+
+          <div class="row center">
+             <button id="btnCopySnippet" type="button" class="btn-large waves-effect waves-light orange small-bottom-space">Copy Snippet URL</button>
+             <button id="btnNewSnippet" type="button" class="btn-large waves-effect waves-light orange small-bottom-space">Create New Snippet</button>
+          </div>
       </div>
     </div>
   </div>

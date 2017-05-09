@@ -47,7 +47,8 @@ CREATE TABLE snippets (
     download_count INT NOT NULL DEFAULT 0,
     created_at TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    KEY userid_idx (user_id)
+    KEY userid_idx (user_id, updated_at),
+    KEY updated_at_idx (updated_at)
 );
 
 CREATE TABLE acls (

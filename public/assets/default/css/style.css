@@ -75,7 +75,23 @@
     border-bottom: 1px solid  #ffb74d;
 }
 
+#createsnippet .input-field input[type=text] {
+    border-bottom: 1px solid  #ffb74d;
+}
+
 /* icon prefix focus color */
 #createsnippet .input-field .prefix.active {
      color: #e65100;
+}
+
+.hidden {
+    display: none;
+}
+
+.small-bottom-space {
+    margin-bottom: 10px;
+}
+
+#snippetUrl {
+    font-size:1.25em;
 }
