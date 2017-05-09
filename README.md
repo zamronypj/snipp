@@ -6,7 +6,7 @@ Snippet-sharing web application built with Phalcon PHP framework.
 Requirement
 -----------
 
-- PHP >= 7.1
+- PHP >= 5.5
 - MySQL 5.5
 - Phalcon >= 3.1.2 [https://phalconphp.com](https://phalconphp.com)
 - Apache >= 2.4
