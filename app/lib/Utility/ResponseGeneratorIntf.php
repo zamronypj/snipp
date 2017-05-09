@@ -4,7 +4,7 @@ namespace Snippet\Utility;
 interface ResponseGeneratorIntf {
 
     /**
-     * Utitlity for creating response object
+     * Utitity for creating response object
      * @param $responseCode HTTP error code
      * @param $responseString string contains message
      * @param $data actual data to be sent to client

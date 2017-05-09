@@ -100,3 +100,7 @@ $di->set('responseGenerator', function() {
 $di->set('randomStr', function() {
     return new Snippet\Utility\BasicRandomStringGenerator();
 });
+
+$di->set('dateSvc', function() {
+    return new Snippet\Utility\CarbonDateService();
+});

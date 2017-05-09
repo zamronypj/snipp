@@ -6,7 +6,10 @@ use Snippet\Models\Snippets;
 
 class HomeController extends BaseHomepageController {
     private function getFeaturedSnippets() {
-        return Snippets::find([ 'limit' => 7 ]);
+        return Snippets::find([
+            'order' => 'updated_at DESC',
+            'limit' => 7
+        ]);
     }
 
     public function indexAction() {
