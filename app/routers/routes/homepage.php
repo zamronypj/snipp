@@ -18,12 +18,6 @@ $router->addPost('/create', [
     'action' => 'index'
 ]);
 
-$router->addGet('/signin', [
-    'namespace' => 'Snippet\\Controllers\Homepage',
-    'controller' => 'sign-in',
-    'action' => 'index'
-]);
-
 $router->addGet('/s/{snippetId:[a-zA-Z0-9]{7}}', [
     'namespace' => 'Snippet\\Controllers\Homepage',
     'controller' => 'snippet-detail',

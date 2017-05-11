@@ -18,13 +18,14 @@ $loader->registerDirs([
     MODELS_PATH,
     LIB_PATH
 ]);
-$loader->registerNamespaces(array(
+$loader->registerNamespaces([
     'Snippet\Controllers' => CONTROLLERS_PATH,
     'Snippet\Controllers\Homepage' => CONTROLLERS_PATH . 'homepage/',
     'Snippet\Controllers\Admin' => CONTROLLERS_PATH . 'admin/',
     'Snippet\Models' => MODELS_PATH,
     'Snippet\Security' => LIB_PATH . 'Security/',
-    'Snippet\Utility' => LIB_PATH . 'Utility/'
-));
+    'Snippet\Utility' => LIB_PATH . 'Utility/',
+    'Snippet\Validation' => LIB_PATH . 'Validation/'
+]);
 
 $loader->register();
