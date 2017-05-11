@@ -105,3 +105,7 @@
 .snippetapp .input-field .prefix.active {
      color: #e65100;
 }
+
+.medium-top-padding {
+    padding-top: 40px;
+}

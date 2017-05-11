@@ -1,3 +1,4 @@
+<div class="container medium-top-padding">
 <h5 class="orange-text">Sign In</h5>
 <div class="row">
     <form class="snippetapp col s12">
@@ -14,9 +15,15 @@
         </div>
       </div>
       <div class="row">
+        <div class="input-field col s12">
           <button type="submit" class="btn-large waves-effect waves-light orange" >Sign In</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+            <div>Don't have account? <a href="<?= $this->url->get('signup'); ?>" >Sign Up</a></div>
+        </div>
       </div>
     </form>
-
-    <div>Don't have account? <a href="<?= $this->url->get('signup'); ?>" >Sign Up</a></div>
   </div>
+</div>
