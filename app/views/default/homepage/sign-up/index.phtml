@@ -2,6 +2,7 @@
 <h5 class="orange-text">Sign Up</h5>
 <div class="row">
   <form class="snippetapp col s12">
+      <input id="csrfToken" type="hidden" name="<?= $token->name; ?>" value="<?= $token->value; ?>">
       <div class="row">
         <div class="input-field col s12">
           <input id="email" name="email" type="email" class="validate">

@@ -6,6 +6,7 @@ use Snippet\Models\Users;
 
 class SignUpController extends BaseHomepageController {
     public function indexAction() {
+        $this->view->token = $this->tokenGenerator->generateCsrfToken();
     }
 
     private function validateAndSanitizeInput() {
