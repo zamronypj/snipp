@@ -1,3 +1,4 @@
+<div class="container">
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <h1 class="header center orange-text">Snipp it now</h1>
@@ -5,7 +6,7 @@
         <h5 class="header col s12 light">Code-sharing made easy</h5>
       </div>
       <div id="formContainer" class="row center">
-        <form id="createsnippet" class="col s12">
+        <form id="createsnippet" class="snippetapp col s12">
           <input id="csrfToken" type="hidden" name="<?= $token->name; ?>" value="<?= $token->value; ?>">
           <div class="row">
             <div class="input-field col s12">
@@ -59,3 +60,4 @@
       <?php endforeach; ?>
   </ul>
 <?php endif; ?>
+</div>

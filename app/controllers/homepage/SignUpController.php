@@ -4,35 +4,28 @@ namespace Snippet\Controllers\Homepage;
 use Snippet\Controllers\Homepage\BaseHomepageController;
 use Snippet\Models\Users;
 
-class SignInController extends BaseHomepageController {
+class SignUpController extends BaseHomepageController {
     public function indexAction() {
         $this->view->token = $this->tokenGenerator->generateCsrfToken();
     }
 
-    private function validateAndSanitizeUserData() {
+    private function validateAndSanitizeInput() {
 
     }
 
-    private function checkUserAuth() {
+    private function saveUserData() {
 
     }
 
-    private function handleUserLoginAction() {
-        $this->validateAndSanitizeUserData();
-        $user = $this->checkUserAuth();
-        if ($user) {
-            $this->session->set('user', $user);
-        } else {
-            //invalid user
-            $this->session->remove('user');
-
-        }
+    private function handleRegisterUserAction() {
+        $this->validateAndSanitizeInput();
+        $this->saveUserData();
     }
 
-    public function authAction() {
+    public function registerAction() {
         if ($this->request->isPost()) {
             if ($this->security->checkToken()) {
-                return $this->handleUserLoginAction();
+                return $this->handleRegisterUserAction();
             } else {
                 //something is wrong, no CSRF token
                 $this->notFound();
@@ -42,7 +35,6 @@ class SignInController extends BaseHomepageController {
             //something is wrong so just return 404 and log the issue
             $this->notFound();
         }
-
     }
 }
 

@@ -21,69 +21,6 @@
    margin-bottom:0px;
 }
 
-/* label color */
-#createsnippet .input-field label {
-     color: #ffb74d;
-}
-
-/* label focus color */
-#createsnippet .input-field input[type=text]:focus + label {
-     color: #e65100;
-}
-
-/* label underline focus color */
-#createsnippet .input-field input[type=text]:focus {
-     border-bottom: 1px solid #e65100;
-     box-shadow: 0 1px 0 0 #e65100;
-}
-
-/* valid color */
-#createsnippet .input-field input[type=text].valid {
-     border-bottom: 1px solid #e65100;
-     box-shadow: 0 1px 0 0 #e65100;
-   }
-
-/* invalid color */
-#createsnippet .input-field input[type=text].invalid {
-     border-bottom: 1px solid #e65100;
-     box-shadow: 0 1px 0 0 #e65100;
-}
-
-/* label focus color */
-#createsnippet .input-field textarea:focus + label {
-     color: #e65100;
-}
-
-#createsnippet .input-field textarea:focus {
-     border-bottom: 1px solid #e65100;
-     box-shadow: 0 1px 0 0 #e65100;
-}
-
-/* valid color */
-#createsnippet .input-field textarea.valid {
-     border-bottom: 1px solid #e65100;
-     box-shadow: 0 1px 0 0 #e65100;
-   }
-
-/* invalid color */
-#createsnippet .input-field textarea.invalid {
-     border-bottom: 1px solid #e65100;
-     box-shadow: 0 1px 0 0 #e65100;
-}
-
-#createsnippet .input-field textarea.materialize-textarea {
-    border-bottom: 1px solid  #ffb74d;
-}
-
-#createsnippet .input-field input[type=text] {
-    border-bottom: 1px solid  #ffb74d;
-}
-
-/* icon prefix focus color */
-#createsnippet .input-field .prefix.active {
-     color: #e65100;
-}
-
 .hidden {
     display: none;
 }
@@ -94,4 +31,81 @@
 
 #snippetUrl {
     font-size:1.25em;
+}
+
+/* label color */
+.snippetapp .input-field label {
+     color: #ffb74d;
+}
+
+/* label focus color */
+.snippetapp .input-field input[type=text]:focus + label,
+.snippetapp .input-field input[type=email]:focus + label,
+.snippetapp .input-field input[type=password]:focus + label {
+     color: #e65100;
+}
+
+/* label underline focus color */
+.snippetapp .input-field input[type=text]:focus,
+.snippetapp .input-field input[type=email]:focus,
+.snippetapp .input-field input[type=password]:focus {
+     border-bottom: 1px solid #e65100;
+     box-shadow: 0 1px 0 0 #e65100;
+}
+
+/* valid color */
+.snippetapp .input-field input[type=text].valid,
+.snippetapp .input-field input[type=email].valid,
+.snippetapp .input-field input[type=password].valid {
+     border-bottom: 1px solid #e65100;
+     box-shadow: 0 1px 0 0 #e65100;
+}
+
+/* invalid color */
+.snippetapp .input-field input[type=text].invalid,
+.snippetapp .input-field input[type=email].invalid,
+.snippetapp .input-field input[type=password].invalid {
+     border-bottom: 1px solid #e65100;
+     box-shadow: 0 1px 0 0 #e65100;
+}
+
+/* label focus color */
+.snippetapp .input-field textarea:focus + label {
+     color: #e65100;
+}
+
+.snippetapp .input-field textarea:focus {
+     border-bottom: 1px solid #e65100;
+     box-shadow: 0 1px 0 0 #e65100;
+}
+
+/* valid color */
+.snippetapp .input-field textarea.valid {
+     border-bottom: 1px solid #e65100;
+     box-shadow: 0 1px 0 0 #e65100;
+   }
+
+/* invalid color */
+.snippetapp .input-field textarea.invalid {
+     border-bottom: 1px solid #e65100;
+     box-shadow: 0 1px 0 0 #e65100;
+}
+
+.snippetapp .input-field textarea.materialize-textarea {
+    border-bottom: 1px solid  #ffb74d;
+}
+
+.snippetapp .input-field input[type=text],
+.snippetapp .input-field input[type=email],
+.snippetapp .input-field input[type=password] {
+    border-bottom: 1px solid  #ffb74d;
+}
+
+/* icon prefix focus color */
+.snippetapp .input-field .prefix.active {
+     color: #e65100;
+}
+
+.medium-top-padding {
+    padding-top: 40px;
 }

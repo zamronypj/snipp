@@ -3,22 +3,34 @@
       <a id="logo-container" href="<?= $this->url->get('/'); ?>" class="brand-logo"><?= $appName; ?></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="<?= $this->url->get('/'); ?>"><i class="material-icons left">home</i>Home</a></li>
-        <li><a href="<?= $this->url->get('/list'); ?>"><i class="material-icons left">list</i>Snippets</a></li>
+        <li><a href="<?= $this->url->get('list'); ?>"><i class="material-icons left">list</i>Snippets</a></li>
+
+        <?php if (!isset($user)) : ?>
+        <li><a href="<?= $this->url->get('signin'); ?>"><i class="material-icons left">account_circle</i>Sign In</a></li>
+        <?php endif; ?>
+
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li>
-          <div class="userView">
-            <div class="background">
-              <img src="http://img.juhara.com/300x300.png">
-            </div>
-            <a href="#!user"><img class="circle" src="http://img.juhara.com/100x100.png"></a>
-            <a href="#!name"><span class="white-text name">John Doe</span></a>
-            <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-          </div>
-        </li>
+        <?php if (isset($user)) : ?>
+            <li>
+              <div class="userView">
+                <div class="background">
+                  <img src="http://img.juhara.com/300x300.png">
+                </div>
+                <a href="#!user"><img class="circle" src="http://img.juhara.com/100x100.png"></a>
+                <a href="#!name"><span class="white-text name"><?= $user->firstName; ?> <?= $user->lastName; ?></span></a>
+                <a href="#!email"><span class="white-text email"><?= $user->email; ?></span></a>
+              </div>
+            </li>
+        <?php endif; ?>
         <li><a class="waves-effect" href="<?= $this->url->get('/'); ?>"><i class="material-icons">home</i>Home</a></li>
-        <li><a class="waves-effect" href="<?= $this->url->get('/list'); ?>"><i class="material-icons">list</i>Snippets</a></li>
+        <li><a class="waves-effect" href="<?= $this->url->get('list'); ?>"><i class="material-icons">list</i>Snippets</a></li>
+
+        <?php if (!isset($user)) : ?>
+        <li><a class="waves-effect" href="<?= $this->url->get('signin'); ?>"><i class="material-icons left">account_circle</i>Sign In</a></li>
+        <?php endif; ?>
+
         <li><div class="divider"></div></li>
         <li><a class="subheader">Subheader</a></li>
         <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>

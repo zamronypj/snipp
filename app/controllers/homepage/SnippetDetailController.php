@@ -16,11 +16,7 @@ class SnippetDetailController extends BaseHomepageController {
             $this->view->snippet = $foundSnippet;
             $this->view->customJs = $this->view->getPartial('snippet-detail/highlight.js', ['theme' => $this->config->theme ]);
         } else {
-            $this->dispatcher->forward([
-                'namespace'  => 'Snippet\\Controllers',
-                'controller' => 'error',
-                'action'     => 'error404'
-            ]);
+            $this->notFound();
         }
     }
 }

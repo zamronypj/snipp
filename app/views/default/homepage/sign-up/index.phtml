@@ -1,0 +1,40 @@
+<div class="container medium-top-padding">
+<h5 class="orange-text">Sign Up</h5>
+<div class="row">
+  <form class="snippetapp col s12">
+      <input id="csrfToken" type="hidden" name="<?= $token->name; ?>" value="<?= $token->value; ?>">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" name="email" type="email" class="validate">
+          <label for="email" data-error="Invalid email format">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" name="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="first_name" name="first_name" type="text" class="validate">
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="last_name" name="last_name" type="text" class="validate">
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <button type="submit" class="btn-large waves-effect waves-light orange" >Sign Up</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <div>Already have account? <a href="<?= $this->url->get('signin'); ?>">Sign In</a></div>
+        </div>
+      </div>
+  </form>
+</div>
+</div>
