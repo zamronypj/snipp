@@ -1,5 +1,6 @@
 <div class="container meddium-top-padding">
     <h5 class="orange-text darken-4">Snippet <?= $snippet->title; ?></h5>
+    <div><?= $this->dateSvc->humanFriendly($snippet->updated_at, 'Y-m-d H:i:s'); ?></div>
     <pre>
         <code><?= $snippet->content; ?></code>
     </pre>
