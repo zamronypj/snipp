@@ -40,13 +40,14 @@
         <li><a class="waves-effect" href="<?= $this->url->get('/'); ?>"><i class="material-icons">home</i>Home</a></li>
         <li><a class="waves-effect" href="<?= $this->url->get('list'); ?>"><i class="material-icons">list</i>Snippets</a></li>
 
-        <?php if (!isset($user)) : ?>
-        <li><a class="waves-effect" href="<?= $this->url->get('signin'); ?>"><i class="material-icons left">account_circle</i>Sign In</a></li>
+        <?php if (isset($user)) : ?>
+            <li><div class="divider"></div></li>
+            <!-- <li><a class="subheader">Subheader</a></li> -->
+            <li><a class="waves-effect" href="<?= $this->url->get('signout'); ?>"><i class="material-icons left">input</i>Sign Out</a></li>
+        <?php else: ?>
+            <li><a class="waves-effect" href="<?= $this->url->get('signin'); ?>"><i class="material-icons left">account_circle</i>Sign In</a></li>
         <?php endif; ?>
 
-        <li><div class="divider"></div></li>
-        <li><a class="subheader">Subheader</a></li>
-        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
