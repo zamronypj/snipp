@@ -1,5 +1,5 @@
 <?php
-namespace Snippet\Users;
+namespace Snippet\Task\Users;
 
 use Phalcon\Security;
 use Phalcon\Logger\AdapterInterface as LoggerInterface;
@@ -9,18 +9,9 @@ use Snippet\Models\UserDetails;
 use \StdClass;
 
 /**
- * Class that encapsulate user registration process
+ * Class that encapsulate user authentication process
  */
-class UserRegistration {
-    private $security;
-    private $request;
-    private $logger;
-
-    public function __construct(RequestInterface $request, Security $security, LoggerInterface $logger) {
-        $this->request = $request;
-        $this->security = $security;
-        $this->logger = $logger;
-    }
+class UserAuthentication extends BaseUserTask {
 
     private function validateAndSanitizeInput(RequestInterface $request) {
         $sanitizedData = new StdClass();
@@ -32,11 +23,15 @@ class UserRegistration {
         return $sanitizedData;
     }
 
-    private function saveUserData(StdClass $sanitizedData, Security $security, LoggerInterface $logger) {
-        $logger->log('Registering user  -'.
-                            ' username:' . $sanitizedData->username .
-                            ' email:'.$sanitizedData->email);
+    private function authUserData(StdClass $sanitizedData, Security $security, LoggerInterface $logger) {
+        if (isset($sanitizedData->username)) {
+            Users::findFirstByUsername()
 
+        } elseif (isset($sanitizedData->email)) {
+
+        } else {
+            return false;
+        }
         $newUser = new Users();
         $newUser->username = $sanitizedData->username;
         $newUser->userpswd = $security->hash($sanitizedData->password);
@@ -52,9 +47,9 @@ class UserRegistration {
         $userDetail->save();
     }
 
-    public function registerUser() {
+    public function authUser() {
         $sanitizedData = $this->validateAndSanitizeInput($this->request);
-        $this->saveUserData($sanitizedData, $this->security, $this->logger);
+        return $this->authUserData($sanitizedData, $this->security, $this->logger);
     }
 
 }

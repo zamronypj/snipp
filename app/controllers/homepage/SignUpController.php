@@ -2,7 +2,7 @@
 namespace Snippet\Controllers\Homepage;
 
 use Snippet\Controllers\Homepage\BaseHomepageController;
-use Snippet\Users\UserRegistration;
+use Snippet\Task\Users\UserRegistration;
 
 class SignUpController extends BaseHomepageController {
     public function indexAction() {
