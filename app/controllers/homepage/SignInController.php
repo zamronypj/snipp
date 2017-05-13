@@ -13,11 +13,22 @@ class SignInController extends BaseHomepageController {
 
     }
 
-    private function checkUserAuth() {
+    private function checkUserAuth($email, $password) {
+        $user = Users::findFirst(
+            [
+                "(email = :email: OR username = :email:) AND password = :password: AND active = 'Y'",
+                "bind" => [
+                    "email"    => $email,
+                    "password" => sha1($password),
+                ]
+            ]
+        );
 
     }
 
     private function handleUserLoginAction() {
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
         $this->validateAndSanitizeUserData();
         $user = $this->checkUserAuth();
         if ($user) {

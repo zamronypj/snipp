@@ -1,12 +1,12 @@
 <div class="container medium-top-padding">
 <h5 class="orange-text">Sign Up</h5>
 <div class="row">
-  <form class="snippetapp col s12">
+  <form class="snippetapp col s12" action="register" method="post">
       <input id="csrfToken" type="hidden" name="<?= $token->name; ?>" value="<?= $token->value; ?>">
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" name="email" type="email" class="validate">
-          <label for="email" data-error="Invalid email format">Email</label>
+          <input id="username" name="username" type="text" class="validate">
+          <label for="username" >Username</label>
         </div>
       </div>
       <div class="row">
@@ -16,12 +16,18 @@
         </div>
       </div>
       <div class="row">
+        <div class="input-field col s12">
+          <input id="email" name="email" type="email" class="validate">
+          <label for="email" data-error="Invalid email format">Email</label>
+        </div>
+      </div>
+      <div class="row">
         <div class="input-field col s6">
-          <input id="first_name" name="first_name" type="text" class="validate">
+          <input id="first_name" name="firstname" type="text" class="validate">
           <label for="first_name">First Name</label>
         </div>
         <div class="input-field col s6">
-          <input id="last_name" name="last_name" type="text" class="validate">
+          <input id="last_name" name="lastname" type="text" class="validate">
           <label for="last_name">Last Name</label>
         </div>
       </div>

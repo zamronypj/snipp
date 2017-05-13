@@ -12,7 +12,7 @@ CREATE TABLE user_details (
     user_id INT NOT NULL,
     firstname VARCHAR(30) NOT NULL,
     lastname VARCHAR(30) NOT NULL,
-    country VARCHAR(2) NOT NULL,
+    country VARCHAR(2) NOT NULL DEFAULT '',
     created_at TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UNIQUE KEY userid_idx (user_id),

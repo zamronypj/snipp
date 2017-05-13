@@ -25,7 +25,8 @@ $loader->registerNamespaces([
     'Snippet\Models' => MODELS_PATH,
     'Snippet\Security' => LIB_PATH . 'Security/',
     'Snippet\Utility' => LIB_PATH . 'Utility/',
-    'Snippet\Validation' => LIB_PATH . 'Validation/'
+    'Snippet\Validation' => LIB_PATH . 'Validation/',
+    'Snippet\Users' => LIB_PATH . 'Users/'
 ]);
 
 $loader->register();
