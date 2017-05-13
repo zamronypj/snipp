@@ -2,32 +2,24 @@
 namespace Snippet\Controllers\Homepage;
 
 use Snippet\Controllers\Homepage\BaseHomepageController;
-use Snippet\Models\Users;
+use Snippet\Task\Users\UserRegistrationTask;
 
 class SignUpController extends BaseHomepageController {
     public function indexAction() {
         $this->view->token = $this->tokenGenerator->generateCsrfToken();
     }
 
-    private function validateAndSanitizeInput() {
-
-    }
-
-    private function saveUserData() {
-
-    }
-
     private function handleRegisterUserAction() {
-        $this->validateAndSanitizeInput();
-        $this->saveUserData();
+        $userRegistration = new UserRegistrationTask($this->request, $this->security, $this->logger);
+        $userRegistration->registerUser();
     }
 
     public function registerAction() {
         if ($this->request->isPost()) {
             if ($this->security->checkToken()) {
-                return $this->handleRegisterUserAction();
+                $this->handleRegisterUserAction();
             } else {
-                //something is wrong, no CSRF token
+                $this->logger->critical('No CSRF token');
                 $this->notFound();
             }
         } else {
