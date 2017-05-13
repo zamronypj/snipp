@@ -1,7 +1,12 @@
 (function($){
-  $(function(){
+    $(function(){
+        $('.button-collapse').sideNav();
+        var profileElem = $('.userprofile');
+        if (profileElem) {
+            profileElem.dropdown({
+                belowOrigin: true
+            });
+        }
 
-    $('.button-collapse').sideNav();
-
-  }); // end of document ready
-})(jQuery); // end of jQuery name space
+    });
+})(jQuery);

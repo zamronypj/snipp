@@ -2,7 +2,7 @@
 namespace Snippet\Controllers\Homepage;
 
 use Snippet\Controllers\Homepage\BaseHomepageController;
-use Snippet\Task\Users\UserRegistration;
+use Snippet\Task\Users\UserRegistrationTask;
 
 class SignUpController extends BaseHomepageController {
     public function indexAction() {
@@ -10,7 +10,7 @@ class SignUpController extends BaseHomepageController {
     }
 
     private function handleRegisterUserAction() {
-        $userRegistration = new UserRegistration($this->request, $this->security, $this->logger);
+        $userRegistration = new UserRegistrationTask($this->request, $this->security, $this->logger);
         $userRegistration->registerUser();
     }
 

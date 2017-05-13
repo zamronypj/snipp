@@ -2,41 +2,23 @@
 namespace Snippet\Controllers\Homepage;
 
 use Snippet\Controllers\Homepage\BaseHomepageController;
-use Snippet\Models\Users;
+use Snippet\Task\Users\UserAuthenticationTask;
 
 class SignInController extends BaseHomepageController {
+
     public function indexAction() {
         $this->view->token = $this->tokenGenerator->generateCsrfToken();
     }
 
-    private function validateAndSanitizeUserData() {
-
-    }
-
-    private function checkUserAuth($email, $password) {
-        $user = Users::findFirst(
-            [
-                "(email = :email: OR username = :email:) AND password = :password: AND active = 'Y'",
-                "bind" => [
-                    "email"    => $email,
-                    "password" => sha1($password),
-                ]
-            ]
-        );
-
-    }
-
     private function handleUserLoginAction() {
-        $email = $this->request->getPost('email');
-        $password = $this->request->getPost('password');
-        $this->validateAndSanitizeUserData();
-        $user = $this->checkUserAuth();
-        if ($user) {
-            $this->session->set('user', $user);
+        $authTask = new UserAuthenticationTask($this->request, $this->security, $this->logger);
+        $authResult = $authTask->authUser();
+        if ($authResult->status) {
+            $this->session->set('user', $authResult->data);
+            $this->response->redirect('/');
         } else {
-            //invalid user
             $this->session->remove('user');
-
+            $this->response->redirect('signin/failed');
         }
     }
 
@@ -45,7 +27,7 @@ class SignInController extends BaseHomepageController {
             if ($this->security->checkToken()) {
                 return $this->handleUserLoginAction();
             } else {
-                //something is wrong, no CSRF token
+                $this->logger->error('Sign in no CSRF token');
                 $this->notFound();
             }
         } else {
@@ -53,6 +35,10 @@ class SignInController extends BaseHomepageController {
             //something is wrong so just return 404 and log the issue
             $this->notFound();
         }
+
+    }
+
+    public function failedAction() {
 
     }
 }

@@ -2,6 +2,7 @@
 namespace Snippet\Controllers\Homepage;
 
 use Snippet\Controllers\BaseController;
+use Snippet\Models\UserDetails;
 
 class BaseHomepageController extends BaseController {
     public function initialize() {
@@ -10,6 +11,11 @@ class BaseHomepageController extends BaseController {
         $this->view->appName = $this->config->appName;
         $this->view->appUrl = $this->config->appUrl;
         $this->view->user = $this->session->has('user') ? $this->session->get('user') : null;
+        if ($this->session->has('user')) {
+            $user = $this->session->get('user');
+            $detail = UserDetails::findFirstByUserId($user->id);
+            $this->view->userdetail = $detail;
+        }
     }
 }
 
