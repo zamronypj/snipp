@@ -12,8 +12,8 @@ class Users extends Model
 
     public function initialize()
     {
-        $this->hasOne('id', 'Snippet\\Models\\UserDetails', 'user_id');
-        $this->hasMany('id', 'Snippets', 'user_id');
+        $this->hasOne('id', 'Snippet\Models\UserDetails', 'user_id');
+        $this->hasMany('id', 'Snippet\Models\Snippets', 'user_id');
         $this->hasManyToMany('id', 'UserGroups', 'user_id', 'group_id', 'Groups', 'id');
     }
 }

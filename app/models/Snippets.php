@@ -15,6 +15,7 @@ class Snippets extends Model
 
     public function initialize()
     {
-        $this->belongsTo('user_id', 'Users', 'id');
+        $this->belongsTo('user_id', 'Snippet\Models\Users', 'id');
+        $this->hasMany('id', 'SnippetCategories', 'snippet_id');
     }
 }
