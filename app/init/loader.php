@@ -26,8 +26,10 @@ $loader->registerNamespaces([
     'Snippet\Security' => LIB_PATH . 'Security/',
     'Snippet\Utility' => LIB_PATH . 'Utility/',
     'Snippet\Validation' => LIB_PATH . 'Validation/',
+    'Snippet\Sanitation' => LIB_PATH . 'Sanitation/',
     'Snippet\Task' => LIB_PATH . 'Task/',
-    'Snippet\Task\Users' => LIB_PATH . 'Task/Users/'
+    'Snippet\Task\Users' => LIB_PATH . 'Task/Users/',
+    'Snippet\Task\Snippets' => LIB_PATH . 'Task/Snippets/'
 ]);
 
 $loader->register();

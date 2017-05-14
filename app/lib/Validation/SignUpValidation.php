@@ -7,16 +7,20 @@ use Phalcon\Validation\Validator\PresenceOf;
 
 class SignUpValidation extends Validation {
     public function initialize() {
+        $this->add('username', new PresenceOf([
+            'message' => 'Username is required'
+        ]));
+
         $this->add('email', new PresenceOf([
-            'message' => 'The e-mail is required'
+            'message' => 'E-mail is required'
         ]));
 
         $this->add('email', new Email([
-           'message' => 'The e-mail is not valid'
+           'message' => 'E-mail is not valid'
         ]));
 
         $this->add('password', new PresenceOf([
-           'message' => 'The password is required'
+           'message' => 'Password is required'
         ]));
     }
 }

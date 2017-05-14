@@ -1,10 +1,11 @@
 <?php
-namespace Snippet\Task\Users;
+namespace Snippet\Task\Snippets;
 
 use Snippet\Task\BaseTask;
 
 /**
  * Class that encapsulate user-related task
  */
-class BaseUserTask extends BaseTask {
+class BaseSnippetTask  extends BaseTask {
+
 }

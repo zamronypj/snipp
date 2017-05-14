@@ -8,12 +8,20 @@ use Snippet\Models\Users;
 use Snippet\Models\UserDetails;
 use \StdClass;
 
+
 /**
  * Class that encapsulate user registration process
  */
 class UserRegistrationTask extends BaseUserTask {
 
-    private function validateAndSanitizeInput(RequestInterface $request) {
+    private function validateInput(RequestInterface $request) {
+        $validationStatus = new StdClass();
+        $validationStatus->status = true;
+        //TODO: validate input
+        return $validationStatus;
+    }
+
+    private function sanitizeInput(RequestInterface $request) {
         $sanitizedData = new StdClass();
         $sanitizedData->username = $request->getPost('username');
         $sanitizedData->password = $request->getPost('password');
@@ -21,6 +29,15 @@ class UserRegistrationTask extends BaseUserTask {
         $sanitizedData->firstname = $request->getPost('firstname');
         $sanitizedData->lastname = $request->getPost('lastname');
         return $sanitizedData;
+    }
+
+    private function validateAndSanitizeInput(RequestInterface $request) {
+        $result = $this->validateInput($request);
+        if ($result->status) {
+            $result->sanitizedData = $this->sanitizeInput($request);
+        }
+
+        return $result;
     }
 
     private function saveUserData(StdClass $sanitizedData, Security $security, LoggerInterface $logger) {
@@ -36,7 +53,6 @@ class UserRegistrationTask extends BaseUserTask {
 
         $userDetail = new UserDetails();
         $userDetail->firstname = $sanitizedData->firstname;
-        $userDetail->lastname = $sanitizedData->lastname;
         $userDetail->lastname = $sanitizedData->lastname;
         $userDetail->user_id = $newUser->id;
         $userDetail->country = 'id';
