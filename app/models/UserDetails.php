@@ -15,6 +15,6 @@ class UserDetails extends Model
 
     public function initialize()
     {
-        $this->belongsTo('user_id', 'Snippet\\Models\\Users', 'id');
+        $this->belongsTo('user_id', 'Snippet\Models\Users', 'id');
     }
 }
