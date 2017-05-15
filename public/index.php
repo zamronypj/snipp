@@ -21,6 +21,7 @@ try {
     $message = get_class($e) . ":\n" .
         'File: ' . $e->getFile() . "\n" .
         'Line: ' . $e->getLine() . "\n" .
+        'Message: ' . $e->getMessage() . "\n" .
         $e->getTraceAsString();
 
     $di->get('logger')->critical($message);

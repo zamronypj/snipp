@@ -12,6 +12,12 @@ $router->addGet('/list', [
     'action' => 'index'
 ]);
 
+$router->addGet('/your-snippets', [
+    'namespace' => 'Snippet\Controllers\Homepage',
+    'controller' => 'snippet-list',
+    'action' => 'listCurrentUserSnippets'
+]);
+
 $router->addPost('/create', [
     'namespace' => 'Snippet\Controllers\Homepage',
     'controller' => 'snippet-create',

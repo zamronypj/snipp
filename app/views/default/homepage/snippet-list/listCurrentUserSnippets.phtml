@@ -1,5 +1,5 @@
 <div class="container">
-  <h5 class="orange-text darken-4">Snippet List</h5>
+  <h5 class="orange-text darken-4">Your Snippets</h5>
   <div class="row">
   <?php foreach ($featuredSnippets as $snippet) : ?>
     <div class="col s12 m4">
@@ -14,7 +14,6 @@
           </div>
           <div class="card-action">
             <a href="<?= $appUrl .'s/' . $snippet->id; ?>">View</a>
-
             <div class="chip"><img src="http://img.juhara.com/50x50.png" alt="Contact Person"><?= $snippet->creator->username; ?></div>
           </div>
         </div>
