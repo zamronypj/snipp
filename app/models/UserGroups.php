@@ -10,8 +10,8 @@ class UserGroups extends Model
     public $user_id;
 
     public function initialize() {
-        $this->belongsTo('user_id', 'Users', 'id');
-        $this->belongsTo('group_id', 'Groups', 'id');
+        $this->belongsTo('user_id', 'Snippet\Models\Users', 'id');
+        $this->belongsTo('group_id', 'Snippet\Models\Groups', 'id');
     }
 }
 

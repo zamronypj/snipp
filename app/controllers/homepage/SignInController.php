@@ -4,7 +4,8 @@ namespace Snippet\Controllers\Homepage;
 use Snippet\Controllers\Homepage\BaseHomepageController;
 use Snippet\Task\Users\UserAuthenticationTask;
 
-class SignInController extends BaseHomepageController {
+class SignInController extends BaseHomepageController
+{
 
     public function indexAction() {
         $this->view->token = $this->tokenGenerator->generateCsrfToken();
