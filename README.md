@@ -11,6 +11,7 @@ Requirement
 - Phalcon >= 3.1.2 [https://phalconphp.com](https://phalconphp.com)
 - Apache >= 2.4
 - Composer [https://getcomposer.org](https://getcomposer.org)
+- Sass >= 3
 
 Installation
 ------------
@@ -25,6 +26,6 @@ Installation
 - Run `./migrations/migrate.sh [your_db_username] [your_db_name]` to setup MYSQL table schema. Replace `[your_db_username]` and `[your_db_name]` with your username and database name. Enter your password when prompted.
 - Run `./migrations/seeder.sh [your_db_username] [your_db_name]` to seed default data.
 - Make sure `resources/sassme.sh` file is executable. If not, make it executable.
-- Run `./migrations/sassme.sh [theme]` to compile scss file to css. Replace `[theme]` with `default` to compile default theme style located in `resources/styles/default/scss/style.scss` to `public/assets/default/css/style.css`.
+- Run `./resources/sassme.sh [theme]` to compile scss file to css. Replace `[theme]` with `default` to compile default theme style located in `resources/styles/default/scss/style.scss` to `public/assets/default/css/style.css`.
 
 Have fun.
