@@ -6,6 +6,7 @@ use Phalcon\Logger\AdapterInterface as LoggerInterface;
 use Phalcon\Http\RequestInterface;
 use Snippet\Models\Users;
 use Snippet\Models\UserDetails;
+use Snippet\Exception\User\RegistrationValidationException;
 use \StdClass;
 
 /**
@@ -64,7 +65,13 @@ class UserRegistrationTask extends BaseUserTask
 
     public function registerUser()
     {
-        $sanitizedData = $this->validateAndSanitizeInput($this->request);
-        $this->saveUserData($sanitizedData, $this->security, $this->logger);
+
+        $validatedAndSanitizedData = $this->validateAndSanitizeInput($this->request);
+        if ($validatedAndSanitizedData->status) {
+            $this->saveUserData($validatedAndSanitizedData->sanitizedData, $this->security, $this->logger);
+        } else {
+            throw new RegisterValidationException('Wrong data');
+        }
+
     }
 }

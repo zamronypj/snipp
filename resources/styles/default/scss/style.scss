@@ -90,14 +90,14 @@
         border-bottom: 1px solid  $secondary-color;
     }
 
-    .snippetapp .input-field input[type=text],
-    .snippetapp .input-field input[type=email],
-    .snippetapp .input-field input[type=password] {
+    .input-field input[type=text],
+    .input-field input[type=email],
+    .input-field input[type=password] {
         border-bottom: 1px solid  $secondary-color;
     }
 
     /* icon prefix focus color */
-    .snippetapp .input-field .prefix.active {
+    .input-field .prefix.active {
          color: $main-color;
     }
 
