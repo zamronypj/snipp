@@ -7,4 +7,5 @@ class Groups extends Model
 {
     public $id;
     public $name;
+    public $display_name;
 }
