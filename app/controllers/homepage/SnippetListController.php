@@ -30,7 +30,7 @@ class SnippetListController extends BaseHomepageController
             $take = $this->config->snippetsPerPage;
             $offset = $this->request->getQuery('skip', 'int', 0);
             $currentUser = $this->session->get('user');
-            $this->view->featuredSnippets = $currentUser->snippets->find([
+            $this->view->featuredSnippets = $currentUser->getSnippets([
                 'limit' => $take,
                 'offset' => $offset
             ]);
