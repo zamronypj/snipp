@@ -7,7 +7,8 @@ use Snippet\Models\Snippets;
 use Snippet\Models\Users;
 use Snippet\Models\UserDetails;
 
-class SnippetDetailController extends BaseHomepageController {
+class SnippetDetailController extends BaseHomepageController
+{
     public function indexAction($snippetId) {
         $filter = new Filter();
         $sanitizedSnippetId = $filter->sanitize($snippetId, 'alphanum');
