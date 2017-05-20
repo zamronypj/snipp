@@ -40,7 +40,7 @@ $di->set('config', function () {
 });
 
 // Setup the database service
-$di->set('db', function () use($di) {
+$di->set('db', function () use ($di) {
     $config = $di->get('config');
     return new DbAdapter([
                   'host' => $config->db->host,
@@ -65,7 +65,7 @@ $di->setShared('session', function () {
 | register all routes from app/config/routes.php
 |
 */
-$di->set('router', function() {
+$di->set('router', function () {
     $router = require(ROUTER_PATH . 'router.php');
     return $router;
 });
@@ -78,29 +78,29 @@ $di->set('router', function() {
 | register view directories
 |
 */
-$di->set('view', function() {
+$di->set('view', function () {
     $view = new View();
     $view->setViewsDir(VIEWS_PATH);
     return $view;
 });
 
-$di->set('logger', function() {
+$di->set('logger', function () {
     return new FileAdapter(LOGS_PATH . 'app.log');
 });
 
-$di->set('tokenGenerator', function() use($di) {
+$di->set('tokenGenerator', function () use ($di) {
     $securityObj = $di->get('security');
     return new Snippet\Security\CsrfTokenGenerator($securityObj);
 });
 
-$di->set('responseGenerator', function() {
+$di->set('responseGenerator', function () {
     return new Snippet\Utility\JsonResponseGenerator();
 });
 
-$di->set('randomStr', function() {
+$di->set('randomStr', function () {
     return new Snippet\Utility\BasicRandomStringGenerator();
 });
 
-$di->set('dateSvc', function() {
+$di->set('dateSvc', function () {
     return new Snippet\Utility\CarbonDateService();
 });

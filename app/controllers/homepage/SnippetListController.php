@@ -7,14 +7,16 @@ use \StdClass;
 
 class SnippetListController extends BaseHomepageController
 {
-    private function getFeaturedSnippets($offset, $take) {
+    private function getFeaturedSnippets($offset, $take)
+    {
         return Snippets::find([
             'limit' => $take,
             'offset' => $offset
         ]);
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         $take = $this->config->snippetsPerPage;
         $page = $this->request->getQuery('page', 'int', 1);
         $page = $page >= 1 ? $page : 1;
@@ -25,7 +27,8 @@ class SnippetListController extends BaseHomepageController
         $this->view->page = $paginator;
     }
 
-    public function listCurrentUserSnippetsAction() {
+    public function listCurrentUserSnippetsAction()
+    {
         if ($this->session->has('user')) {
             $take = $this->config->snippetsPerPage;
             $offset = $this->request->getQuery('skip', 'int', 0);
@@ -35,8 +38,12 @@ class SnippetListController extends BaseHomepageController
                 'offset' => $offset
             ]);
         } else {
-            $this->notFound();
+            //TODO:implements this as middleware
+            $this->dispatcher->forward([
+                'namespace' => 'Snippet\Controllers\Homepage',
+                'controller' => 'sign-in',
+                'action' => 'index'
+            ]);
         }
     }
 }
-

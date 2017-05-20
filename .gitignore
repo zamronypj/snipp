@@ -2,3 +2,4 @@ app/config/app.php
 vendor/
 storages/
 dev/
+.php_cs.cache

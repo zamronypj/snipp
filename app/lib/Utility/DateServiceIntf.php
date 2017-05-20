@@ -4,7 +4,8 @@ namespace Snippet\Utility;
 /**
  * Utility for date
  */
-interface DateServiceIntf {
+interface DateServiceIntf
+{
 
     /**
      * formatting date as a friendly human format

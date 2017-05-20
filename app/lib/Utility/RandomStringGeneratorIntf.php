@@ -1,7 +1,8 @@
 <?php
 namespace Snippet\Utility;
 
-interface RandomStringGeneratorIntf {
+interface RandomStringGeneratorIntf
+{
 
     /**
      * Utitlity for creating random string of certain length

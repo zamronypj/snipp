@@ -8,20 +8,21 @@ use Snippet\Models\Users;
 use Snippet\Models\UserDetails;
 use \StdClass;
 
-
 /**
  * Class that encapsulate user registration process
  */
-class UserRegistrationTask extends BaseUserTask {
-
-    private function validateInput(RequestInterface $request) {
+class UserRegistrationTask extends BaseUserTask
+{
+    private function validateInput(RequestInterface $request)
+    {
         $validationStatus = new StdClass();
         $validationStatus->status = true;
         //TODO: validate input
         return $validationStatus;
     }
 
-    private function sanitizeInput(RequestInterface $request) {
+    private function sanitizeInput(RequestInterface $request)
+    {
         $sanitizedData = new StdClass();
         $sanitizedData->username = $request->getPost('username');
         $sanitizedData->password = $request->getPost('password');
@@ -31,7 +32,8 @@ class UserRegistrationTask extends BaseUserTask {
         return $sanitizedData;
     }
 
-    private function validateAndSanitizeInput(RequestInterface $request) {
+    private function validateAndSanitizeInput(RequestInterface $request)
+    {
         $result = $this->validateInput($request);
         if ($result->status) {
             $result->sanitizedData = $this->sanitizeInput($request);
@@ -40,7 +42,8 @@ class UserRegistrationTask extends BaseUserTask {
         return $result;
     }
 
-    private function saveUserData(StdClass $sanitizedData, Security $security, LoggerInterface $logger) {
+    private function saveUserData(StdClass $sanitizedData, Security $security, LoggerInterface $logger)
+    {
         $logger->log('Registering user  -'.
                             ' username:' . $sanitizedData->username .
                             ' email:'.$sanitizedData->email);
@@ -59,9 +62,9 @@ class UserRegistrationTask extends BaseUserTask {
         $userDetail->save();
     }
 
-    public function registerUser() {
+    public function registerUser()
+    {
         $sanitizedData = $this->validateAndSanitizeInput($this->request);
         $this->saveUserData($sanitizedData, $this->security, $this->logger);
     }
-
 }

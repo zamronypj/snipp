@@ -5,8 +5,10 @@ use Phalcon\Validation;
 use Phalcon\Validation\Validator\Email;
 use Phalcon\Validation\Validator\PresenceOf;
 
-class SignInValidation extends Validation {
-    public function initialize() {
+class SignInValidation extends Validation
+{
+    public function initialize()
+    {
         $this->add('email', new PresenceOf([
             'message' => 'The e-mail is required'
         ]));

@@ -9,7 +9,8 @@ use Snippet\Models\UserDetails;
 
 class SnippetDetailController extends BaseHomepageController
 {
-    public function indexAction($snippetId) {
+    public function indexAction($snippetId)
+    {
         $filter = new Filter();
         $sanitizedSnippetId = $filter->sanitize($snippetId, 'alphanum');
         $foundSnippet= Snippets::findFirstById($sanitizedSnippetId);
@@ -30,4 +31,3 @@ class SnippetDetailController extends BaseHomepageController
         }
     }
 }
-

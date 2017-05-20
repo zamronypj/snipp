@@ -6,7 +6,8 @@ use Snippet\Models\UserDetails;
 
 class BaseHomepageController extends BaseController
 {
-    public function initialize() {
+    public function initialize()
+    {
         $this->view->setViewsDir(VIEWS_PATH. $this->config->theme. '/homepage/');
         $this->view->theme = $this->config->theme;
         $this->view->appName = $this->config->appName;
@@ -19,4 +20,3 @@ class BaseHomepageController extends BaseController
         }
     }
 }
-

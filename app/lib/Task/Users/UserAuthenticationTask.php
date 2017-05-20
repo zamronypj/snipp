@@ -16,9 +16,10 @@ define('AUTH_INVALID_PASSW', 3);
 /**
  * Class that encapsulate user authentication process
  */
-class UserAuthenticationTask extends BaseUserTask {
-
-    private function reportStatus($code, $status, $data) {
+class UserAuthenticationTask extends BaseUserTask
+{
+    private function reportStatus($code, $status, $data)
+    {
         $result = new StdClass();
         $result->code = $code;
         $result->status = $status;
@@ -26,14 +27,16 @@ class UserAuthenticationTask extends BaseUserTask {
         return $result;
     }
 
-    private function validateAndSanitizeInput(RequestInterface $request) {
+    private function validateAndSanitizeInput(RequestInterface $request)
+    {
         $sanitizedData = new StdClass();
         $sanitizedData->username = $request->getPost('username');
         $sanitizedData->password = $request->getPost('password');
         return $sanitizedData;
     }
 
-    private function authCheck($user, StdClass $sanitizedData) {
+    private function authCheck($user, StdClass $sanitizedData)
+    {
         if ($user) {
             if ($this->security->checkHash($sanitizedData->password, $user->userpswd)) {
                 return $this->reportStatus(AUTH_OK, true, $user);
@@ -45,17 +48,20 @@ class UserAuthenticationTask extends BaseUserTask {
         }
     }
 
-    private function authByUsername(StdClass $sanitizedData) {
+    private function authByUsername(StdClass $sanitizedData)
+    {
         $user = Users::findFirstByUsername($sanitizedData->username);
         return $this->authCheck($user, $sanitizedData);
     }
 
-    private function authByEmail(StdClass $sanitizedData) {
+    private function authByEmail(StdClass $sanitizedData)
+    {
         $user = Users::findFirstByEmail($sanitizedData->email);
         return $this->authCheck($user, $sanitizedData);
     }
 
-    private function authUserData(StdClass $sanitizedData, Security $security, LoggerInterface $logger) {
+    private function authUserData(StdClass $sanitizedData, Security $security, LoggerInterface $logger)
+    {
         if (isset($sanitizedData->username)) {
             return $this->authByUsername($sanitizedData);
         } elseif (isset($sanitizedData->email)) {
@@ -65,9 +71,9 @@ class UserAuthenticationTask extends BaseUserTask {
         }
     }
 
-    public function authUser() {
+    public function authUser()
+    {
         $sanitizedData = $this->validateAndSanitizeInput($this->request);
         return $this->authUserData($sanitizedData, $this->security, $this->logger);
     }
-
 }

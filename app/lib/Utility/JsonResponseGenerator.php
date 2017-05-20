@@ -3,8 +3,10 @@ namespace Snippet\Utility;
 
 use Phalcon\Http\Response;
 
-class JsonResponseGenerator implements ResponseGeneratorIntf {
-    public function createResponse($responseCode, $responseString, $data, $newToken) {
+class JsonResponseGenerator implements ResponseGeneratorIntf
+{
+    public function createResponse($responseCode, $responseString, $data, $newToken)
+    {
         $response = new Response();
         $response->setContentType('application/json', 'UTF-8');
         $response->setStatusCode($responseCode, $responseString);
@@ -15,5 +17,4 @@ class JsonResponseGenerator implements ResponseGeneratorIntf {
         ));
         return $response;
     }
-
 }

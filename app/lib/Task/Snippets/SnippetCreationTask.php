@@ -15,7 +15,8 @@ use Snippet\Task\Snippets\BaseSnippetTask;
 /**
  * Class that encapsulate snippet creation task
  */
-class SnippetCreationTask extends BaseSnippetTask {
+class SnippetCreationTask extends BaseSnippetTask
+{
     private $responseGenerator;
     private $tokenGenerator;
     private $randomStr;
@@ -25,7 +26,8 @@ class SnippetCreationTask extends BaseSnippetTask {
 
     public function __construct(RequestInterface $request, Security $security, LoggerInterface $logger,
                                 ResponseGeneratorInterface $respGenerator, TokenGeneratorInterface $tokenGenerator,
-                                RandomStringGeneratorInterface $randomStr, $currentUser, $appUrl, $snippetIdLen) {
+                                RandomStringGeneratorInterface $randomStr, $currentUser, $appUrl, $snippetIdLen)
+    {
         $this->request = $request;
         $this->security = $security;
         $this->logger = $logger;
@@ -37,20 +39,23 @@ class SnippetCreationTask extends BaseSnippetTask {
         $this->snippetIdLen = $snippetIdLen;
     }
 
-    private function generateResponseData($snippetObj, $appUrl) {
+    private function generateResponseData($snippetObj, $appUrl)
+    {
         $snippetData =  new StdClass();
         $snippetData->snippetId = $snippetObj->id;
         $snippetData->snippetUrl = $appUrl. 's/'. $snippetObj->id;
         return $snippetData;
     }
 
-    private function outputJson($snippetObj, $appUrl) {
+    private function outputJson($snippetObj, $appUrl)
+    {
         $snippetData =  $this->generateResponseData($snippetObj, $appUrl);
         $csrfToken = $this->tokenGenerator->generateCsrfToken();
         return $this->responseGenerator->createResponse(200, 'OK', $snippetData, $csrfToken);
     }
 
-    private function addSanitizedSnippet($actualSanitizedSnippet, $snippetTitle, $appUrl, $snippetIdLen) {
+    private function addSanitizedSnippet($actualSanitizedSnippet, $snippetTitle, $appUrl, $snippetIdLen)
+    {
         $snippet = new Snippets();
         $snippet->id = $this->randomStr->createRandomString($snippetIdLen);
         $snippet->title = strlen($snippetTitle) ? $snippetTitle : 'Untitled';
@@ -62,14 +67,14 @@ class SnippetCreationTask extends BaseSnippetTask {
         return $this->outputJson($snippet, $appUrl);
     }
 
-    public function createSnippet() {
+    public function createSnippet()
+    {
         $filter = new Filter();
-        $filter->add('specialchar', function($rawInput){
-             return filter_var($rawInput, FILTER_SANITIZE_SPECIAL_CHARS);
+        $filter->add('specialchar', function ($rawInput) {
+            return filter_var($rawInput, FILTER_SANITIZE_SPECIAL_CHARS);
         });
         $actualSnippet = $filter->sanitize($this->request->getPost('snippet'), 'specialchar');
         $snippetTitle = $filter->sanitize($this->request->getPost('snippetTitle'), 'string');
         return $this->addSanitizedSnippet($actualSnippet, $snippetTitle, $this->appUrl, $this->snippetIdLen);
     }
-
 }

@@ -6,16 +6,19 @@ use Snippet\Task\Users\UserRegistrationTask;
 
 class SignUpController extends BaseHomepageController
 {
-    public function indexAction() {
+    public function indexAction()
+    {
         $this->view->token = $this->tokenGenerator->generateCsrfToken();
     }
 
-    private function handleRegisterUserAction() {
+    private function handleRegisterUserAction()
+    {
         $userRegistration = new UserRegistrationTask($this->request, $this->security, $this->logger);
         $userRegistration->registerUser();
     }
 
-    public function registerAction() {
+    public function registerAction()
+    {
         if ($this->request->isPost()) {
             if ($this->security->checkToken()) {
                 $this->handleRegisterUserAction();
@@ -30,4 +33,3 @@ class SignUpController extends BaseHomepageController
         }
     }
 }
-

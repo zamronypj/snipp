@@ -6,12 +6,13 @@ use Snippet\Task\Users\UserAuthenticationTask;
 
 class SignInController extends BaseHomepageController
 {
-
-    public function indexAction() {
+    public function indexAction()
+    {
         $this->view->token = $this->tokenGenerator->generateCsrfToken();
     }
 
-    private function handleUserLoginAction() {
+    private function handleUserLoginAction()
+    {
         $authTask = new UserAuthenticationTask($this->request, $this->security, $this->logger);
         $authResult = $authTask->authUser();
         if ($authResult->status) {
@@ -23,7 +24,8 @@ class SignInController extends BaseHomepageController
         }
     }
 
-    public function authAction() {
+    public function authAction()
+    {
         if ($this->request->isPost()) {
             if ($this->security->checkToken()) {
                 return $this->handleUserLoginAction();
@@ -36,11 +38,9 @@ class SignInController extends BaseHomepageController
             //something is wrong so just return 404 and log the issue
             $this->notFound();
         }
-
     }
 
-    public function failedAction() {
-
+    public function failedAction()
+    {
     }
 }
-

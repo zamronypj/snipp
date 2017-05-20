@@ -6,7 +6,8 @@ use Carbon\Carbon;
 /**
  * Date service using Carbon
  */
-class CarbonDateService implements DateServiceIntf {
+class CarbonDateService implements DateServiceIntf
+{
 
     /**
      * formatting date as a friendly human format
@@ -14,8 +15,8 @@ class CarbonDateService implements DateServiceIntf {
      * @param $datetimeFormat format of input date
      * @return string human friendly formatted date
      */
-    public function humanFriendly($datetimeValue, $datetimeFormat) {
+    public function humanFriendly($datetimeValue, $datetimeFormat)
+    {
         return Carbon::createFromFormat($datetimeFormat, $datetimeValue)->diffForHumans();
     }
-
 }

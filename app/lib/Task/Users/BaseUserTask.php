@@ -6,5 +6,6 @@ use Snippet\Task\BaseTask;
 /**
  * Class that encapsulate user-related task
  */
-class BaseUserTask extends BaseTask {
+class BaseUserTask extends BaseTask
+{
 }

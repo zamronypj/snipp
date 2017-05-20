@@ -1,7 +1,8 @@
 <?php
 namespace Snippet\Utility;
 
-interface ResponseGeneratorIntf {
+interface ResponseGeneratorIntf
+{
 
     /**
      * Utitity for creating response object
