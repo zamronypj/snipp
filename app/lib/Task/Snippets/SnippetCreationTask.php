@@ -7,6 +7,7 @@ use Phalcon\Http\RequestInterface;
 use Phalcon\Filter;
 use Snippet\Models\Snippets;
 use Snippet\Models\Acls;
+use Snippet\Models\Groups;
 use \StdClass;
 use Snippet\Utility\ResponseGeneratorIntf as ResponseGeneratorInterface;
 use Snippet\Utility\RandomStringGeneratorIntf as RandomStringGeneratorInterface;
@@ -66,6 +67,14 @@ class SnippetCreationTask extends BaseSnippetTask
         }
         $snippet->save();
 
+        $publicGroup = Groups::findFirstByName('public');
+
+        //add snippet to public group by default so anyone can view
+        //TODO: add ability to assign snippet to certain group so only certain users in that group be able to view
+        $acls = new Acls();
+        $acls->snippet_id = $snippet->id;
+        $acls->group_id = $publicGroup->id;
+        $acls->save();
 
         return $this->outputJson($snippet, $appUrl);
     }
