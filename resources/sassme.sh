@@ -8,7 +8,7 @@ fi
 
 theme=$1
 appRootDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd ".." && pwd )"
-sourceScss="$appRootDir/resources/$theme/scss/style.scss"
+sourceScss="$appRootDir/resources/styles/$theme/scss/style.scss"
 targetCssDir="$appRootDir/public/assets/$theme/css"
 targetCss="$targetCssDir/style.css"
 
