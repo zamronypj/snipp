@@ -20,5 +20,9 @@ class Snippets extends Model
                              'Snippet\Models\SnippetCategories', 'snippet_id', 'category_id',
                              'Snippet\Models\Categories', 'id',
                              ['alias' => 'categories']);
+        $this->hasManyToMany('id',
+                             'Snippet\Models\Acls', 'snippet_id', 'group_id',
+                             'Snippet\Models\Groups', 'id',
+                             ['alias' => 'groups']);
     }
 }

@@ -6,6 +6,7 @@ use Phalcon\Logger\AdapterInterface as LoggerInterface;
 use Phalcon\Http\RequestInterface;
 use Phalcon\Filter;
 use Snippet\Models\Snippets;
+use Snippet\Models\Acls;
 use \StdClass;
 use Snippet\Utility\ResponseGeneratorIntf as ResponseGeneratorInterface;
 use Snippet\Utility\RandomStringGeneratorIntf as RandomStringGeneratorInterface;
@@ -64,6 +65,8 @@ class SnippetCreationTask extends BaseSnippetTask
             $snippet->user_id = $this->currentUser->id;
         }
         $snippet->save();
+
+
         return $this->outputJson($snippet, $appUrl);
     }
 

@@ -1,0 +1,1 @@
+INSERT INTO groups (name, display_name) VALUES ('public', 'Public');
