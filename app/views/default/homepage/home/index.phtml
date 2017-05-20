@@ -48,7 +48,7 @@
     </div>
   </div>
 
-<?php if(isset($featuredSnippets)) : ?>
+<?php if(isset($featuredSnippets) && (count($featuredSnippets))) : ?>
   <ul class="collection">
       <?php foreach($featuredSnippets as $snippet) : ?>
           <li class="collection-item avatar">

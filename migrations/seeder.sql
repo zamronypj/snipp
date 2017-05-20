@@ -1,1 +1,1 @@
-INSERT INTO groups (name, display_name) VALUES ('public', 'Public');
+INSERT INTO groups (id, name, display_name) VALUES (1, 'public', 'Public');

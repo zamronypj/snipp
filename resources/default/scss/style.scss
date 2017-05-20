@@ -1,0 +1,109 @@
+@import 'components/colors';
+
+.icon-block {
+    padding: 0 15px;
+    .material-icons {
+        font-size: inherit;
+    }
+}
+
+.page-footer {
+    padding-top :10px;
+
+    .container .row {
+       margin-bottom:0px;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.small-bottom-space {
+    margin-bottom: 10px;
+}
+
+#snippetUrl {
+    font-size:1.25em;
+}
+
+.snippetapp {
+    /* label color */
+    .input-field label {
+         color: $secondary-color;
+    }
+
+    /* label focus color */
+    .input-field input[type=text]:focus + label,
+    .input-field input[type=email]:focus + label,
+    .input-field input[type=password]:focus + label {
+         color: $main-color;
+    }
+
+    /* label underline focus color */
+    .input-field input[type=text]:focus,
+    .input-field input[type=email]:focus,
+    .input-field input[type=password]:focus {
+         border-bottom: 1px solid $main-color;
+         box-shadow: 0 1px 0 0 $main-color;
+    }
+
+    /* valid color */
+    .input-field input[type=text].valid,
+    .input-field input[type=email].valid,
+    .input-field input[type=password].valid {
+         border-bottom: 1px solid $main-color;
+         box-shadow: 0 1px 0 0 $main-color;
+    }
+
+    /* invalid color */
+    .input-field input[type=text].invalid,
+    .input-field input[type=email].invalid,
+    .input-field input[type=password].invalid {
+         border-bottom: 1px solid $main-color;
+         box-shadow: 0 1px 0 0 $main-color;
+    }
+
+    /* label focus color */
+    .input-field textarea:focus + label {
+         color: $main-color;
+    }
+
+    .input-field textarea:focus {
+         border-bottom: 1px solid $main-color;
+         box-shadow: 0 1px 0 0 $main-color;
+    }
+
+    /* valid color */
+    .input-field textarea.valid {
+         border-bottom: 1px solid $main-color;
+         box-shadow: 0 1px 0 0 $main-color;
+       }
+
+    /* invalid color */
+    .input-field textarea.invalid {
+         border-bottom: 1px solid $main-color;
+         box-shadow: 0 1px 0 0 $main-color;
+    }
+
+    .input-field textarea.materialize-textarea {
+        border-bottom: 1px solid  $secondary-color;
+    }
+
+    .snippetapp .input-field input[type=text],
+    .snippetapp .input-field input[type=email],
+    .snippetapp .input-field input[type=password] {
+        border-bottom: 1px solid  $secondary-color;
+    }
+
+    /* icon prefix focus color */
+    .snippetapp .input-field .prefix.active {
+         color: $main-color;
+    }
+
+
+}
+
+.medium-top-padding {
+    padding-top: 40px;
+}
