@@ -15,8 +15,7 @@ try {
     //load namespaces
     require INIT_PATH . 'loader.php';
 
-    $app = new Application($di);
-    echo $app->handle()->getContent();
+    echo (new Application($di))->handle()->getContent();
 } catch (Exception $e) {
     $message = get_class($e) . ":\n" .
         'File: ' . $e->getFile() . "\n" .
