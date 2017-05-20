@@ -56,7 +56,7 @@ class SnippetCreationTask extends BaseSnippetTask {
         $snippet->title = strlen($snippetTitle) ? $snippetTitle : 'Untitled';
         $snippet->content = $actualSanitizedSnippet;
         if (isset($this->currentUser)) {
-            $snippet->user_id = $currentUser->id;
+            $snippet->user_id = $this->currentUser->id;
         }
         $snippet->save();
         return $this->outputJson($snippet, $appUrl);
