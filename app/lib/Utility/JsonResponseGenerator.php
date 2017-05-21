@@ -3,7 +3,7 @@ namespace Snippet\Utility;
 
 use Phalcon\Http\Response;
 
-class JsonResponseGenerator implements ResponseGeneratorIntf
+class JsonResponseGenerator implements ResponseGeneratorInterface
 {
     public function createResponse($responseCode, $responseString, $data, $newToken)
     {

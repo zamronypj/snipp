@@ -37,6 +37,12 @@ $router->addGet('/s/{snippetId:[a-zA-Z0-9]{7}}', [
     'snippetId'      => 1
 ]);
 
+$router->addGet('/categories', [
+    'namespace' => 'Snippet\Controllers\Homepage',
+    'controller' => 'category-list',
+    'action' => 'list'
+]);
+
 // Set 404 paths
 $router->notFound([
     'namespace' => 'Snippet\Controllers',

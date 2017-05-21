@@ -9,7 +9,7 @@ use Snippet\Models\Snippets;
 use Snippet\Models\Acls;
 use Snippet\Models\Groups;
 use \StdClass;
-use Snippet\Utility\ResponseGeneratorIntf as ResponseGeneratorInterface;
+use Snippet\Utility\ResponseGeneratorInterface;
 use Snippet\Utility\RandomStringGeneratorIntf as RandomStringGeneratorInterface;
 use Snippet\Security\CsrfTokenGeneratorInterface as TokenGeneratorInterface;
 use Snippet\Task\Snippets\BaseSnippetTask;

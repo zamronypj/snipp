@@ -44,7 +44,6 @@ CREATE TABLE user_groups (
 CREATE TABLE categories (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR(20) NOT NULL,
-    display_name VARCHAR(50) NOT NULL,
     UNIQUE KEY name_idx (name)
 );
 

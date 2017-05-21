@@ -16,5 +16,18 @@ class UserDetails extends Model
     public function initialize()
     {
         $this->belongsTo('user_id', 'Snippet\Models\Users', 'id');
+        $this->addBehavior(new Timestampable([
+            'beforeCreate' => [
+                'field' => 'created_at',
+                'format' => "Y-m-d H:i:s",
+            ]
+        ]));
+
+        $this->addBehavior(new Timestampable([
+            'beforeUpdate' => [
+                'field' => 'updated_at',
+                'format' => "Y-m-d H:i:s",
+            ]
+        ]));
     }
 }

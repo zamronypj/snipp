@@ -6,7 +6,7 @@ use Carbon\Carbon;
 /**
  * Date service using Carbon
  */
-class CarbonDateService implements DateServiceIntf
+class CarbonDateService implements DateServiceInterface
 {
 
     /**

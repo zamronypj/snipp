@@ -27,5 +27,19 @@ class Snippets extends Model
                              'Snippet\Models\Acls', 'snippet_id', 'group_id',
                              'Snippet\Models\Groups', 'id',
                              ['alias' => 'groups']);
+
+        $this->addBehavior(new Timestampable([
+            'beforeCreate' => [
+                'field' => 'created_at',
+                'format' => "Y-m-d H:i:s",
+            ]
+        ]));
+
+        $this->addBehavior(new Timestampable([
+            'beforeUpdate' => [
+                'field' => 'updated_at',
+                'format' => "Y-m-d H:i:s",
+            ]
+        ]));
     }
 }

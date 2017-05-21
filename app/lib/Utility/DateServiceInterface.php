@@ -4,7 +4,7 @@ namespace Snippet\Utility;
 /**
  * Utility for date
  */
-interface DateServiceIntf
+interface DateServiceInterface
 {
 
     /**
