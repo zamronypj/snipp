@@ -14,8 +14,9 @@
               </div>
               <div class="card-action">
                 <a href="<?= $appUrl .'s/' . $snippet->id; ?>">View</a>
-
+                <?php if (isset($snippet->creator->username)) : ?>
                 <div class="chip"><img src="http://img.juhara.com/50x50.png" alt="Contact Person"><?= $snippet->creator->username; ?></div>
+              <?php endif ?>
               </div>
             </div>
           </div>

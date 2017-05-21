@@ -16,10 +16,13 @@ class Snippets extends Model
     public function initialize()
     {
         $this->belongsTo('user_id', 'Snippet\Models\Users', 'id', ['alias' => 'creator']);
+
+        //list of categories where a snippet belong
         $this->hasManyToMany('id',
                              'Snippet\Models\SnippetCategories', 'snippet_id', 'category_id',
                              'Snippet\Models\Categories', 'id',
                              ['alias' => 'categories']);
+        //list of groups where a snippet is accessible
         $this->hasManyToMany('id',
                              'Snippet\Models\Acls', 'snippet_id', 'group_id',
                              'Snippet\Models\Groups', 'id',

@@ -23,9 +23,14 @@ CREATE TABLE groups (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR(20) NOT NULL,
     display_name VARCHAR(50) NOT NULL,
-    UNIQUE KEY name_idx (name)
+    owner INT NOT NULL, /* user who created this group. a person must be registered user to be able to create group */
+    UNIQUE KEY name_idx (name),
+    KEY owner_idx (owner)
 );
 
+/**
+ * relationship between user and group
+ */
 CREATE TABLE user_groups (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     group_id INT NOT NULL,
@@ -55,6 +60,10 @@ CREATE TABLE snippets (
     KEY updated_at_idx (updated_at)
 );
 
+/*
+ * relationship between snippet and group where it belongs.
+ * only users  belongs to a group be able to view snippets in that group.
+ */
 CREATE TABLE acls (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     snippet_id VARCHAR(7) NOT NULL,

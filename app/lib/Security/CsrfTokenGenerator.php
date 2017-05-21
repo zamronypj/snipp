@@ -2,12 +2,19 @@
 namespace Snippet\Security;
 
 use \StdClass;
+use Phalcon\Security;
 
-class CsrfTokenGenerator implements CsrfTokenGeneratorIntf
+/**
+ * class that encapsulate Crsf token generation functionality
+ */
+class CsrfTokenGenerator implements CsrfTokenGeneratorInterface
 {
+    /**
+     * @var Phalcon\Security
+     */
     private $security;
 
-    public function __construct($securityObj)
+    public function __construct(Security $securityObj)
     {
         $this->security = $securityObj;
     }

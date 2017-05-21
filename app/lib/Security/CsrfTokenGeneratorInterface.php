@@ -5,7 +5,7 @@ namespace Snippet\Security;
  * Interface for csrf token generator
  * @author Zamrony P. Juhara
  */
-interface CsrfTokenGeneratorIntf
+interface CsrfTokenGeneratorInterface
 {
     /**
      * Create new object with field name `name` and `token` which

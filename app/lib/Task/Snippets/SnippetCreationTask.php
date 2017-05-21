@@ -11,7 +11,7 @@ use Snippet\Models\Groups;
 use \StdClass;
 use Snippet\Utility\ResponseGeneratorIntf as ResponseGeneratorInterface;
 use Snippet\Utility\RandomStringGeneratorIntf as RandomStringGeneratorInterface;
-use Snippet\Security\CsrfTokenGeneratorIntf as TokenGeneratorInterface;
+use Snippet\Security\CsrfTokenGeneratorInterface as TokenGeneratorInterface;
 use Snippet\Task\Snippets\BaseSnippetTask;
 
 /**

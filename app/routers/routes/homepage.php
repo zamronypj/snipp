@@ -12,6 +12,12 @@ $router->addGet('/list', [
     'action' => 'index'
 ]);
 
+$router->addGet('/list/{username:[a-zA-Z0-9]{1,16}}', [
+    'namespace' => 'Snippet\Controllers\Homepage',
+    'controller' => 'snippet-list',
+    'action' => 'listPublicSnippetsByUser'
+]);
+
 $router->addGet('/your-snippets', [
     'namespace' => 'Snippet\Controllers\Homepage',
     'controller' => 'snippet-list',

@@ -31,7 +31,7 @@ $loader->registerNamespaces([
     'Snippet\Task\Users' => LIB_PATH . 'Task/Users/',
     'Snippet\Task\Snippets' => LIB_PATH . 'Task/Snippets/',
     'Snippet\Exception' => LIB_PATH . 'Exception/',
-    'Snippet\Exception\User' => LIB_PATH . 'Exception/User',
+    'Snippet\Exception\User' => LIB_PATH . 'Exception/User'
 ]);
 
 $loader->register();

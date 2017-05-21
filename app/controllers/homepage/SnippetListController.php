@@ -1,18 +1,17 @@
 <?php
 namespace Snippet\Controllers\Homepage;
 
+use Phalcon\Filter;
 use Snippet\Controllers\Homepage\BaseHomepageController;
-use Snippet\Models\Snippets;
+use Snippet\Task\Snippets\SnippetListTask;
 use \StdClass;
 
 class SnippetListController extends BaseHomepageController
 {
     private function getFeaturedSnippets($offset, $take)
     {
-        return Snippets::find([
-            'limit' => $take,
-            'offset' => $offset
-        ]);
+        $snippetListTask = new SnippetListTask($this->request, $this->security, $this->logger);
+        return $snippetListTask->listPublicSnippet($offset, $take);
     }
 
     public function indexAction()
@@ -45,5 +44,17 @@ class SnippetListController extends BaseHomepageController
                 'action' => 'index'
             ]);
         }
+    }
+
+    public function listPublicSnippetsByUserAction($username)
+    {
+        $filter = new Filter();
+        $sanitizedUsername = $filter->sanitize($username, 'alphanum');
+        $take = $this->config->snippetsPerPage;
+        $offset = $this->request->getQuery('skip', 'int', 0);
+
+        $snippetListTask = new SnippetListTask($this->request, $this->security, $this->logger);
+        $this->view->featuredSnippets = $snippetListTask->listPublicSnippetByUsername($sanitizedUsername, $offset, $take);
+        $this->view->username = $username;
     }
 }
