@@ -6,12 +6,12 @@ Snippet-sharing web application built with Phalcon PHP framework.
 Requirement
 -----------
 
-- PHP >= 5.5
+- PHP >= 5.5 [https://php.net](https://php.net)
 - MySQL 5.5
 - Phalcon >= 3.1.2 [https://phalconphp.com](https://phalconphp.com)
 - Apache >= 2.4
 - Composer [https://getcomposer.org](https://getcomposer.org)
-- Sass >= 3
+- Sass >= 3 [http://sass-lang.com](http://sass-lang.com)
 
 Installation
 ------------
