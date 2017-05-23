@@ -6,6 +6,8 @@ use Phalcon\Logger\AdapterInterface as LoggerInterface;
 use Phalcon\Http\RequestInterface;
 use Snippet\Models\Users;
 use Snippet\Models\UserDetails;
+use Snippet\Models\UserGroups;
+use Snippet\Models\Groups;
 use Snippet\Exception\User\RegistrationValidationException;
 use \StdClass;
 
@@ -61,6 +63,14 @@ class UserRegistrationTask extends BaseUserTask
         $userDetail->user_id = $newUser->id;
         $userDetail->country = 'id';
         $userDetail->save();
+
+        //all user by default join public group
+        //so when they login they still can view public snippet
+        $publicGroup = Groups::findFirstByName('public');
+        $userGroup = new UserGroups();
+        $userGroup->user_id = $newUser->id;
+        $userGroup->group_id = $publicGroup->id;
+        $userGroup->save();
     }
 
     public function registerUser()

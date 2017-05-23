@@ -11,7 +11,7 @@ class Acls extends Model
 
     public function initialize()
     {
-        $this->belongsTo('snippet_id', 'Snippets', 'id');
-        $this->belongsTo('group_id', 'Groups', 'id');
+        $this->belongsTo('snippet_id', 'Snippet\Models\Snippets', 'id');
+        $this->belongsTo('group_id', 'Snippet\Models\Groups', 'id');
     }
 }

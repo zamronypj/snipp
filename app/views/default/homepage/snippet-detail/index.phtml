@@ -1,10 +1,10 @@
 <div class="container medium-top-padding">
     <h5 class="orange-text darken-4">Snippet <?= $snippet->title; ?></h5>
     <div><?= $this->dateSvc->humanFriendly($snippet->updated_at, 'Y-m-d H:i:s'); ?>
-        <?php if (isset($snippetUserDetail)) : ?>
-            by <?= $snippetUserDetail->firstname; ?> <?= $snippetUserDetail->lastname; ?>
-        <?php elseif(isset($snippetUser)) : ?>
-            by <?= $snippetUser->username; ?>
+        <?php if (isset($snippet->creator->detail)) : ?>
+            by <?= $snippet->creator->detail->firstname; ?> <?= $snippet->creator->detail->lastname; ?>
+        <?php elseif(isset($snippet->creator->username)) : ?>
+            by <?= $snippet->creator->username; ?>
         <?php endif; ?>
     </div>
     <pre>

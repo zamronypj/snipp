@@ -2,6 +2,7 @@
 namespace Snippet\Models;
 
 use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Behavior\Timestampable;
 
 class UserDetails extends Model
 {

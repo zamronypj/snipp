@@ -10,8 +10,9 @@ class SnippetListController extends BaseHomepageController
 {
     private function getFeaturedSnippets($offset, $take)
     {
+        $user = $this->session->has('user') ? $this->session->get('user') : null;
         $snippetListTask = new SnippetListTask($this->request, $this->security, $this->logger);
-        return $snippetListTask->listPublicSnippet($offset, $take);
+        return $snippetListTask->listAvailableSnippet($user, $offset, $take);
     }
 
     public function indexAction()

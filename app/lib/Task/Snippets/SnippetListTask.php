@@ -57,8 +57,22 @@ class SnippetListTask extends BaseSnippetTask
         ]);
     }
 
-    public function listPublicSnippet($offset, $take)
+    private function listPublicSnippet($offset, $take)
     {
         return $this->listSnippetByGroup('public', $offset, $take);
+    }
+
+    private function listAvailableSnippetForCurrentUser($user, $offset, $take)
+    {
+        return $user->getAvailableSnippets($offset, $take);
+    }
+
+    public function listAvailableSnippet($user, $offset, $take)
+    {
+        if (! isset($user)) {
+            return $this->listPublicSnippet($offset, $take);
+        } else {
+            return $this->listAvailableSnippetForCurrentUser($user, $offset, $take);
+        }
     }
 }
