@@ -15,6 +15,10 @@ class SnippetListController extends BaseHomepageController
         return $snippetListTask->listAvailableSnippet($user, $offset, $take);
     }
 
+    /**
+     * List all snippet that user has access to it. For non-registered
+     * user it means only snippet marked as public
+     */
     public function indexAction()
     {
         $take = $this->config->snippetsPerPage;
@@ -27,6 +31,9 @@ class SnippetListController extends BaseHomepageController
         $this->view->page = $paginator;
     }
 
+    /**
+     * List all snippet created by currently logged-in user
+     */
     public function listCurrentUserSnippetsAction()
     {
         if ($this->session->has('user')) {
@@ -47,6 +54,9 @@ class SnippetListController extends BaseHomepageController
         }
     }
 
+    /**
+     * List all public snippet created by user
+     */
     public function listPublicSnippetsByUserAction($username)
     {
         $filter = new Filter();
