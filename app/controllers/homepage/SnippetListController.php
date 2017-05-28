@@ -11,7 +11,9 @@ class SnippetListController extends BaseHomepageController
     private function getFeaturedSnippets($offset, $take)
     {
         $user = $this->session->has('user') ? $this->session->get('user') : null;
-        $snippetListTask = new SnippetListTask($this->request, $this->security, $this->logger);
+        $snippetListTask = new SnippetListTask($this->request,
+                                               $this->security,
+                                               $this->logger);
         return $snippetListTask->listAvailableSnippet($user, $offset, $take);
     }
 
@@ -27,7 +29,8 @@ class SnippetListController extends BaseHomepageController
         $paginator = new StdClass();
         $paginator->before = $page - 1;
         $paginator->next = $page + 1;
-        $this->view->featuredSnippets = $this->getFeaturedSnippets(($page-1) * $take, $take);
+        $offset = ($page-1) * $take;
+        $this->view->featuredSnippets = $this->getFeaturedSnippets($offset, $take);
         $this->view->page = $paginator;
     }
 
@@ -64,7 +67,8 @@ class SnippetListController extends BaseHomepageController
         $take = $this->config->snippetsPerPage;
         $offset = $this->request->getQuery('skip', 'int', 0);
 
-        $snippetListTask = new SnippetListTask($this->request, $this->security, $this->logger);
+        $snippetListTask = new SnippetListTask($this->request, $this->security,
+                                               $this->logger);
         $this->view->featuredSnippets = $snippetListTask->listPublicSnippetByUsername($sanitizedUsername, $offset, $take);
         $this->view->username = $username;
     }
