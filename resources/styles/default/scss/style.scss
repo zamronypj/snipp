@@ -69,37 +69,56 @@
          color: $main-color;
     }
 
-    .input-field textarea:focus {
-         border-bottom: 1px solid $main-color;
-         box-shadow: 0 1px 0 0 $main-color;
+    .input-field {
+        textarea {
+            &:focus {
+                 border-bottom: 1px solid $main-color;
+                 box-shadow: 0 1px 0 0 $main-color;
+            }
+            /* valid color */
+            &.valid {
+                border-bottom: 1px solid $main-color;
+                box-shadow: 0 1px 0 0 $main-color;
+            }
+
+            /* invalid color */
+            &.invalid {
+                border-bottom: 1px solid $main-color;
+                box-shadow: 0 1px 0 0 $main-color;
+            }
+
+            &.materialize-textarea {
+                border-bottom: 1px solid  $secondary-color;
+            }
+        }
+
+        input[type=text],
+        input[type=email],
+        input[type=password] {
+            border-bottom: 1px solid  $secondary-color;
+        }
+
+        /* icon prefix focus color */
+        .prefix.active {
+            color: $main-color;
+        }
+
+        .chips {
+            border-bottom:1px solid $secondary-color;
+            text-align: left;
+            &.focus {
+                border-bottom: 1px solid $main-color;
+                box-shadow: 0 1px 0 0 $main-color;
+            }
+
+            .chip {
+                &.selected {
+                    background-color: $secondary-color;
+                }
+            }
+        }
     }
 
-    /* valid color */
-    .input-field textarea.valid {
-         border-bottom: 1px solid $main-color;
-         box-shadow: 0 1px 0 0 $main-color;
-       }
-
-    /* invalid color */
-    .input-field textarea.invalid {
-         border-bottom: 1px solid $main-color;
-         box-shadow: 0 1px 0 0 $main-color;
-    }
-
-    .input-field textarea.materialize-textarea {
-        border-bottom: 1px solid  $secondary-color;
-    }
-
-    .input-field input[type=text],
-    .input-field input[type=email],
-    .input-field input[type=password] {
-        border-bottom: 1px solid  $secondary-color;
-    }
-
-    /* icon prefix focus color */
-    .input-field .prefix.active {
-         color: $main-color;
-    }
 
 
 }

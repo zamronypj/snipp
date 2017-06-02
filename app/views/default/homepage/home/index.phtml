@@ -1,63 +1,68 @@
 <div class="container">
-  <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <h1 class="header center orange-text">Snipp it now</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">Code-sharing made easy</h5>
-      </div>
-      <div id="formContainer" class="row center">
-        <form id="createsnippet" class="snippetapp col s12">
-          <input id="csrfToken" type="hidden" name="<?= $token->name; ?>" value="<?= $token->value; ?>">
-          <div class="row">
-            <div class="input-field col s12">
-              <textarea id="snippet" name="snippet" class="materialize-textarea"></textarea>
-              <label for="snippet">Paste code here</label>
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <h1 class="header center orange-text">Snipp it now</h1>
+            <div class="row center">
+                <h5 class="header col s12 light">Code-sharing made easy</h5>
             </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="snippetTitle" name="snippetTitle" type="text" placeholder="Untitled">
-              <label for="snippetTitle">Title</label>
+            <div id="formContainer" class="row center">
+                <form id="createsnippet" class="snippetapp col s12">
+                    <input id="csrfToken" type="hidden" name="<?= $token->name; ?>" value="<?= $token->value; ?>">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="snippet" name="snippet" class="materialize-textarea"></textarea>
+                            <label for="snippet">Paste code here</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="snippetTitle" name="snippetTitle" type="text" placeholder="Untitled">
+                            <label for="snippetTitle">Title</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <div class="chips chips-autocomplete"></div>                            
+                        </div>
+                    </div>
+                    <div id="progressContainer" class="row hidden">
+                        <div class="progress">
+                            <div class="indeterminate"></div>
+                        </div>
+                    </div>
+                    <div class="row center">
+                        <button id="btnCreateSnippet" type="button" class="btn-large waves-effect waves-light orange">Create Snippet</button>
+                    </div>
+                </form>
             </div>
-          </div>
-          <div id="progressContainer" class="row hidden">
-            <div class="progress">
-                <div class="indeterminate"></div>
+
+            <div id="statusContainer" class="row center hidden">
+                <div id="resultContainer" class="row">
+                    <a id="snippetUrl"></a>
+                </div>
+
+                <div id="errorContainer" class="row hidden">
+                    <div id="errorMsg" class="red"></div>
+                </div>
+
+                <div class="row center">
+                    <button id="btnCopySnippet" type="button" class="btn-large waves-effect waves-light orange small-bottom-space">Copy Snippet URL</button>
+                    <button id="btnNewSnippet" type="button" class="btn-large waves-effect waves-light orange small-bottom-space">Create New Snippet</button>
+                </div>
             </div>
-          </div>
-          <div class="row center">
-            <button id="btnCreateSnippet" type="button" class="btn-large waves-effect waves-light orange">Create Snippet</button>
-          </div>
-        </form>
-      </div>
-
-      <div id="statusContainer" class="row center hidden">
-          <div id="resultContainer" class="row">
-               <a id="snippetUrl"></a>
-          </div>
-
-          <div id="errorContainer" class="row hidden">
-               <div id="errorMsg" class="red"></div>
-          </div>
-
-          <div class="row center">
-             <button id="btnCopySnippet" type="button" class="btn-large waves-effect waves-light orange small-bottom-space">Copy Snippet URL</button>
-             <button id="btnNewSnippet" type="button" class="btn-large waves-effect waves-light orange small-bottom-space">Create New Snippet</button>
-          </div>
-      </div>
+        </div>
     </div>
-  </div>
 
-<?php if(isset($featuredSnippets) && (count($featuredSnippets))) : ?>
-  <ul class="collection">
-      <?php foreach($featuredSnippets as $snippet) : ?>
-          <li class="collection-item avatar">
-            <i class="material-icons circle red">play_arrow</i>
-            <span class="title"><?= $snippet->title; ?></span>
-            <p><?= $this->dateSvc->humanFriendly($snippet->updated_at, 'Y-m-d H:i:s'); ?></p>
-            <a href="<?= $appUrl; ?>s/<?= $snippet->id; ?>" class="secondary-content"><i class="material-icons">grade</i></a>
-          </li>
-      <?php endforeach; ?>
-  </ul>
-<?php endif; ?>
+    <?php if(isset($featuredSnippets) && (count($featuredSnippets))) : ?>
+        <ul class="collection">
+            <?php foreach($featuredSnippets as $snippet) : ?>
+                <li class="collection-item avatar">
+                    <i class="material-icons circle red">play_arrow</i>
+                    <span class="title"><?= $snippet->title; ?></span>
+                    <p><?= $this->dateSvc->humanFriendly($snippet->updated_at, 'Y-m-d H:i:s'); ?></p>
+                    <a href="<?= $appUrl; ?>s/<?= $snippet->id; ?>" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
 </div>

@@ -89,7 +89,19 @@
             snippetTitleElement.val('');
         });
 
+        $('.chips-autocomplete').material_chip({
+            'placeholder' : '+category',
+            'secondaryPlaceholder' : 'Categories',
+            autocompleteOptions: {
+                data: {
+                    'Apple': null,
+                    'Microsoft': null,
+                    'Google': null
+                },
+                limit: Infinity,
+                minLength: 1
+            }
+        });
 
   }); // end of document ready
 })(jQuery); // end of jQuery name space
-
