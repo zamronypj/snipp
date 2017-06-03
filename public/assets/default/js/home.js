@@ -89,19 +89,27 @@
             snippetTitleElement.val('');
         });
 
-        $('.chips-autocomplete').material_chip({
-            'placeholder' : '+category',
-            'secondaryPlaceholder' : 'Categories',
-            autocompleteOptions: {
-                data: {
-                    'Apple': null,
-                    'Microsoft': null,
-                    'Google': null
-                },
-                limit: Infinity,
-                minLength: 1
+        var categoryListSvc = new ApiService(categoryListApiUrl);
+        categoryListSvc.onDataAvailable(function(data){
+            var categoryData = categoryListSvc.getData();
+            var singleCategory;
+            for (var i = 0, len = data.data.length; i < len; i++) {
+                singleCategory = data.data[i];
+                categoryData[singleCategory.name] = null;
             }
+
+            $('.chips-autocomplete').material_chip({
+                'placeholder' : '+category',
+                'secondaryPlaceholder' : 'Categories',
+                'autocompleteOptions' : {
+                    'data' : categoryListSvc.getData(),
+                    'limit' : Infinity,
+                    'minLength' : 1
+                }
+            });
         });
+        categoryListSvc.getDataFromBackend({});
+
 
   }); // end of document ready
 })(jQuery); // end of jQuery name space
