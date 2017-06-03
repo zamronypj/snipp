@@ -30,23 +30,23 @@ h1.header {
     font-size: 3.2rem;
 }
 .snippetapp {
-    /* label color */
-    .input-field label {
-        color: $secondary-color;
-    }
-    /* label focus color */
-    .input-field textarea:focus + label {
-         color: $main-color;
-    }
-
-    /* label focus color */
-    .input-field input[type=text]:focus + label,
-    .input-field input[type=email]:focus + label,
-    .input-field input[type=password]:focus + label {
-         color: $main-color;
-    }
 
     .input-field {
+        /* label color */
+        label {
+            color: $secondary-color;
+        }
+        /* label focus color */
+        textarea:focus + label {
+             color: $main-color;
+        }
+
+        /* label focus color */
+        input[type=text]:focus + label,
+        input[type=email]:focus + label,
+        input[type=password]:focus + label {
+             color: $main-color;
+        }
         textarea {
             &:focus {
                  border-bottom: 1px solid $main-color;
@@ -111,6 +111,11 @@ h1.header {
                 }
             }
         }
+
+        .dropdown-content li > a, .dropdown-content li > span {
+          color: $main-color;
+        }
+
     }
 }
 
