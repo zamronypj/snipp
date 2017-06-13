@@ -8,11 +8,12 @@ class SnippetCreateController extends BaseHomepageController
 {
     private function outputErrorJson($errorCode, $errorMsg)
     {
+        $csrfToken = $this->tokenGenerator->generateCsrfToken();
         return $this->responseGenerator->createResponse(500, 'Something is wrong',
             array(
                 'error_code' => $errorCode,
                 'error_msg' => $errorMsg
-            ));
+            ), $csrfToken);
     }
 
     private function handlePostAddSnippetAction()

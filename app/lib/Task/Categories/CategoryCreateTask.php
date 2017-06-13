@@ -1,8 +1,9 @@
 <?php
 namespace Snippet\Task\Categories;
 
+use Phalcon\Filter;
 use Snippet\Models\Categories;
-use \StdClass;
+use StdClass;
 
 /**
  * Class that encapsulate category create task
@@ -16,16 +17,27 @@ class CategoryCreateTask extends BaseCategoryTask
         $category->save();
         return $category;
     }
-
-    public function createCategoriesIfNotExist(array $arrayOfCategories)
+    private function sanitizeCategories($unsanitizedCategories)
     {
+        $filter = new Filter();
+        $sanitizedCategories = [];
+        foreach ($unsanitizedCategories as $categoryName) {
+            $sanitizedCategories[] = $filter->sanitize($categoryName, 'string');
+        }
+        return $sanitizedCategories;
+    }
+
+    public function createCategoriesIfNotExist(array $unsanitizedArrayOfCategories)
+    {
+        $arrayOfCategories = $this->sanitizeCategories($unsanitizedArrayOfCategories);
         $categoryIds = [];
         foreach ($arrayOfCategories as $categoryName) {
             $category = Categories::findFirstByName($categoryName);
-            if (is_null($category)) {
+            if ($category === false) {
                 $category = $this->createCategory($categoryName);
             }
             $categoryIds[] = $category->id;
         }
+        return $categoryIds;
     }
 }
