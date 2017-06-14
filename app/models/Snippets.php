@@ -3,6 +3,7 @@ namespace Snippet\Models;
 
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Behavior\Timestampable;
+use Phalcon\Mvc\Model\Query;
 
 class Snippets extends Model
 {
@@ -42,5 +43,31 @@ class Snippets extends Model
                 'format' => "Y-m-d H:i:s",
             ]
         ]));
+    }
+
+    public function findSnippetsByCategoryAndGroup(string $categoryName, string $groupName, int $offset, int $take)
+    {
+        $phql = 'SELECT Snippet\Models\Snippets.* FROM Snippet\Models\Snippets ' .
+                'JOIN Snippet\Models\Acls ' .
+                'ON Snippet\Models\Acls.snippet_id = Snippet\Models\Snippets.id ' .
+                'JOIN Snippet\Models\Groups ' .
+                'ON Snippet\Models\Groups.id = Snippet\Models\Acls.group_id ' .
+                'JOIN Snippet\Models\SnippetCategories ' .
+                'ON Snippet\Models\SnippetCategories.snippet_id = Snippet\Models\Snippets.id ' .
+                'JOIN Snippet\Models\Categories ' .
+                'ON Snippet\Models\Categories.id = Snippet\Models\SnippetCategories.category_id ' .
+                'WHERE Snippet\Models\Categories.name = :categoryName: AND Snippet\Models\Groups.name = :groupName: ' .
+                'LIMIT :take: OFFSET :offset: ';
+        $modelsManager = $this->getModelsManager();
+        return $modelsManager->executeQuery($phql, [
+            'categoryName' => $categoryName,
+            'groupName' => $groupName,
+            'take' => $take,
+            'offset' => $offset
+        ], [
+             //need to include type to avoid take offset added with quote
+            'take' => \Phalcon\Db\Column::BIND_PARAM_INT,
+            'offset' => \Phalcon\Db\Column::BIND_PARAM_INT
+        ]);
     }
 }

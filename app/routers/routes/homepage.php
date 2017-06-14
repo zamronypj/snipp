@@ -25,6 +25,12 @@ $router->addGet('/your-snippets', [
     'action' => 'listCurrentUserSnippets'
 ])->setName('snippet-list-by-current-user');
 
+$router->addGet('/list/tag/{categoryName:[a-zA-Z0-9\-]+}', [
+    'namespace' => 'Snippet\Controllers\Homepage',
+    'controller' => 'snippet-list-by-category',
+    'action' => 'index'
+])->setName('snippet-list-by-category');
+
 $router->addPost('/create', [
     'namespace' => 'Snippet\Controllers\Homepage',
     'controller' => 'snippet-create',

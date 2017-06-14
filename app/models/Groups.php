@@ -27,4 +27,5 @@ class Groups extends Model
                     'Snippet\Models\Users', 'id',
                     ['alias' => 'users']);
     }
+
 }

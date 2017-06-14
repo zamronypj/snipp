@@ -20,9 +20,12 @@ class CategoryCreateTask extends BaseCategoryTask
     private function sanitizeCategories($unsanitizedCategories)
     {
         $filter = new Filter();
+        $filter->add('alphanumdash', function($str){
+            return preg_replace('/[^a-zA-Z0-9\-]+/', '', $str);
+        });
         $sanitizedCategories = [];
         foreach ($unsanitizedCategories as $categoryName) {
-            $sanitizedCategories[] = $filter->sanitize($categoryName, 'string');
+            $sanitizedCategories[] = $filter->sanitize($categoryName, 'alphanumdash');
         }
         return $sanitizedCategories;
     }
