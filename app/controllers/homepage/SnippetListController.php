@@ -4,7 +4,9 @@ namespace Snippet\Controllers\Homepage;
 use Phalcon\Filter;
 use Snippet\Controllers\Homepage\BaseHomepageController;
 use Snippet\Task\Snippets\SnippetListTask;
-use \StdClass;
+use StdClass;
+use Snippet\Utility\PaginationFactory;
+
 
 class SnippetListController extends BaseHomepageController
 {
@@ -14,7 +16,10 @@ class SnippetListController extends BaseHomepageController
         $snippetListTask = new SnippetListTask($this->request,
                                                $this->security,
                                                $this->logger);
-        return $snippetListTask->listAvailableSnippet($user, $offset, $take);
+        return (object)[
+            'snippets' => $snippetListTask->listAvailableSnippet($user, $offset, $take),
+            'totalSnippets' => $snippetListTask->countAvailableSnippet($user)
+        ];
     }
 
     /**
@@ -24,14 +29,16 @@ class SnippetListController extends BaseHomepageController
     public function indexAction()
     {
         $take = $this->config->snippetsPerPage;
-        $page = $this->request->getQuery('page', 'int', 1);
-        $page = $page >= 1 ? $page : 1;
-        $paginator = new StdClass();
-        $paginator->before = $page - 1;
-        $paginator->next = $page + 1;
-        $offset = ($page-1) * $take;
-        $this->view->featuredSnippets = $this->getFeaturedSnippets($offset, $take);
+        $page = $this->request->getQuery('page', 'int', 0);
+        $page = $page < 0 ? 0 : $page;
+        $offset = $page * $take;
+        $result =$this->getFeaturedSnippets($offset, $take);
+        $this->view->featuredSnippets = $result->snippets;
+        $totalSnippets = $result->totalSnippets;
+        $currentUrl = $this->url->get('list');
+        $paginator = (new PaginationFactory())->create($currentUrl, $this->view, floor($offset/$take), $totalSnippets, $take);
         $this->view->page = $paginator;
+        $this->view->totalSnippets = $totalSnippets;
     }
 
     /**

@@ -57,14 +57,30 @@ class SnippetListTask extends BaseSnippetTask
         ]);
     }
 
+    public function countSnippetByGroup($groupName)
+    {
+        $group = Groups::findFirstByName($groupName);
+        return $group->snippets->count();
+    }
+
     private function listPublicSnippet($offset, $take)
     {
         return $this->listSnippetByGroup('public', $offset, $take);
     }
 
+    private function countPublicSnippet()
+    {
+        return $this->countSnippetByGroup('public');
+    }
+
     private function listAvailableSnippetForCurrentUser($user, $offset, $take)
     {
         return $user->getAvailableSnippets($offset, $take);
+    }
+
+    private function countAvailableSnippetForCurrentUser($user)
+    {
+        return $user->countAvailableSnippets();
     }
 
     public function listAvailableSnippet($user, $offset, $take)
@@ -75,4 +91,12 @@ class SnippetListTask extends BaseSnippetTask
             return $this->listAvailableSnippetForCurrentUser($user, $offset, $take);
         }
     }
-}
+
+    public function countAvailableSnippet($user)
+    {
+        if (! isset($user)) {
+            return $this->countPublicSnippet();
+        } else {
+            return $this->countAvailableSnippetForCurrentUser($user);
+        }
+    }}

@@ -32,10 +32,37 @@ class Users extends Model
                 'ON  Snippet\Models\Groups.id = Snippet\Models\UserGroups.group_id ' .
                 'INNER JOIN Snippet\Models\Users ' .
                 'ON  Snippet\Models\Users.id  = Snippet\Models\UserGroups.user_id ' .
-                'WHERE Snippet\Models\Users.id = :userId:';
-        $query = new Query($phql, $this->getDI());
-        return $query->execute([
+                'WHERE Snippet\Models\Users.id = :userId: ' .
+                'LIMIT :take: OFFSET :offset:';
+        $modelsManager = $this->getModelsManager();
+        return $modelsManager->executeQuery($phql, [
+            'userId' => $this->id,
+            'take' => $take,
+            'offset' => $offset
+        ], [
+             //need to include type to avoid take offset added with quote
+            'take' => \Phalcon\Db\Column::BIND_PARAM_INT,
+            'offset' => \Phalcon\Db\Column::BIND_PARAM_INT
+        ]);
+    }
+
+    public function countAvailableSnippets()
+    {
+        $phql = 'SELECT COUNT(Snippet\Models\Snippets.id) AS total FROM Snippet\Models\Snippets ' .
+                'INNER JOIN Snippet\Models\Acls ' .
+                'ON  Snippet\Models\Snippets.id = Snippet\Models\Acls.snippet_id ' .
+                'INNER JOIN Snippet\Models\Groups ' .
+                'ON  Snippet\Models\Groups.id = Snippet\Models\Acls.group_id ' .
+                'INNER JOIN Snippet\Models\UserGroups ' .
+                'ON  Snippet\Models\Groups.id = Snippet\Models\UserGroups.group_id ' .
+                'INNER JOIN Snippet\Models\Users ' .
+                'ON  Snippet\Models\Users.id  = Snippet\Models\UserGroups.user_id ' .
+                'WHERE Snippet\Models\Users.id = :userId: ' .
+                'LIMIT 1';
+        $modelsManager = $this->getModelsManager();
+        $row = $modelsManager->executeQuery($phql, [
             'userId' => $this->id
         ]);
+        return (int) $row[0]->total;
     }
 }
