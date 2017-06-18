@@ -30,8 +30,20 @@ class SnippetListByCategoryController extends BaseHomepageController
         $this->view->categoryName = $categoryName;
         $this->view->snippets = $snippetListTask->listPublicSnippetInCategory($categoryName, $offset, $take);
         $totalSnippets = $snippetListTask->countPublicSnippetInCategory($categoryName);
-        $paginator = (new PaginationFactory())->create('http://fux.com', $this->view, floor($offset/$take), $totalSnippets, $take);
+        $url = $this->url;
+        $currentUrlCallback = function($page) use ($categoryName, $url) {
+            return $url->get([
+                'for' => 'snippet-list-by-category',
+                'categoryName' => $categoryName
+            ]);
+        };
+        $paginator = (new PaginationFactory())->create(floor($offset/$take),
+                                                       $totalSnippets,
+                                                       $take,
+                                                       $this->view,
+                                                       $currentUrlCallback);
         $this->view->page = $paginator;
+        $this->view->totalSnippets = $totalSnippets;
     }
 
 }

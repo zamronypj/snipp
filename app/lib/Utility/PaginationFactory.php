@@ -8,12 +8,12 @@ use Snippet\Utility\Pagination;
  */
 class PaginationFactory
 {
-    public function create($currentUrl, $viewInstance, $currentPage, $total, $take)
+    public function create($currentPage, $total, $take, $viewInstance, $currentUrlCallback)
     {
         $paginator = new Pagination($currentPage, $total, $take);
-        $paginator->onBeginPage(function($page, $currPage, $totalPage, $itemsPerPage, $totalItems) use($viewInstance, $currentUrl) {
+        $paginator->onBeginPage(function($page, $currPage, $totalPage, $itemsPerPage, $totalItems) use($viewInstance, $currentUrlCallback) {
             return $viewInstance->getPartial('pagination/begin', [
-                'currentUrl' => $currentUrl,
+                'currentUrl' => $currentUrlCallback($page),
                 'page' => $page,
                 'currentPage' => $currPage,
                 'totalPage' => $totalPage,
@@ -21,9 +21,9 @@ class PaginationFactory
                 'totalItems' => $totalItems
             ]);
         });
-        $paginator->onPrevPage(function($page, $currPage, $totalPage, $itemsPerPage, $totalItems) use($viewInstance, $currentUrl) {
+        $paginator->onPrevPage(function($page, $currPage, $totalPage, $itemsPerPage, $totalItems) use($viewInstance, $currentUrlCallback) {
             return $viewInstance->getPartial('pagination/prev', [
-                'currentUrl' => $currentUrl,
+                'currentUrl' => $currentUrlCallback($page),
                 'page' => $page,
                 'currentPage' => $currPage,
                 'totalPage' => $totalPage,
@@ -31,9 +31,9 @@ class PaginationFactory
                 'totalItems' => $totalItems
             ]);
         });
-        $paginator->onEachPage(function($page, $currPage, $totalPage, $itemsPerPage, $totalItems) use($viewInstance, $currentUrl) {
+        $paginator->onEachPage(function($page, $currPage, $totalPage, $itemsPerPage, $totalItems) use($viewInstance, $currentUrlCallback) {
             return $viewInstance->getPartial('pagination/each', [
-                'currentUrl' => $currentUrl,
+                'currentUrl' => $currentUrlCallback($page),
                 'page' => $page,
                 'currentPage' => $currPage,
                 'totalPage' => $totalPage,
@@ -41,9 +41,9 @@ class PaginationFactory
                 'totalItems' => $totalItems
             ]);
         });
-        $paginator->onNextPage(function($page, $currPage, $totalPage, $itemsPerPage, $totalItems) use($viewInstance, $currentUrl) {
+        $paginator->onNextPage(function($page, $currPage, $totalPage, $itemsPerPage, $totalItems) use($viewInstance, $currentUrlCallback) {
             return $viewInstance->getPartial('pagination/next', [
-                'currentUrl' => $currentUrl,
+                'currentUrl' => $currentUrlCallback($page),
                 'page' => $page,
                 'currentPage' => $currPage,
                 'totalPage' => $totalPage,
@@ -51,9 +51,9 @@ class PaginationFactory
                 'totalItems' => $totalItems
             ]);
         });
-        $paginator->onEndPage(function($page, $currPage, $totalPage, $itemsPerPage, $totalItems) use($viewInstance, $currentUrl) {
+        $paginator->onEndPage(function($page, $currPage, $totalPage, $itemsPerPage, $totalItems) use($viewInstance, $currentUrlCallback) {
             return $viewInstance->getPartial('pagination/end', [
-                'currentUrl' => $currentUrl,
+                'currentUrl' => $currentUrlCallback($page),
                 'page' => $page,
                 'currentPage' => $currPage,
                 'totalPage' => $totalPage,

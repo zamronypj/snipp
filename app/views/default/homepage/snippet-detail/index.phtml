@@ -8,7 +8,10 @@
         <?php endif; ?>
         <div class="categories">
         <?php foreach ($snippet->categories as $category ):?>
-            <div class="chip"><?= $category->name; ?></div> 
+            <a href="<?= $this->url->get([
+                'for' => 'snippet-list-by-category',
+                'categoryName' => $category->name
+            ]); ?>"><div class="chip"><?= $category->name; ?></div></a>
         <?php endforeach;?>
         </div>
     </div>

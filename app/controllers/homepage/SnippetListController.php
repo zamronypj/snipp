@@ -35,8 +35,15 @@ class SnippetListController extends BaseHomepageController
         $result =$this->getFeaturedSnippets($offset, $take);
         $this->view->featuredSnippets = $result->snippets;
         $totalSnippets = $result->totalSnippets;
-        $currentUrl = $this->url->get('list');
-        $paginator = (new PaginationFactory())->create($currentUrl, $this->view, floor($offset/$take), $totalSnippets, $take);
+        $url = $this->url;
+        $currentUrlCallback = function($page) use ($url) {
+            return $url->get([ 'for' => 'snippet-list' ]);
+        };
+        $paginator = (new PaginationFactory())->create(floor($offset/$take),
+                                                    $totalSnippets,
+                                                    $take,
+                                                    $this->view,
+                                                    $currentUrlCallback);
         $this->view->page = $paginator;
         $this->view->totalSnippets = $totalSnippets;
     }

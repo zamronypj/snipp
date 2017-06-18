@@ -1,6 +1,11 @@
 <div class="container  medium-top-padding">
     <h5 class="orange-text darken-4">Snippets in <?= $categoryName; ?></h5>
     <div class="row">
+        <div class="col s12">
+            <span class="new badge orange" data-badge-caption="snippets"><?= $totalSnippets; ?></span>
+        </div>
+    </div>
+    <div class="row">
         <?php foreach ($snippets as $snippet) : ?>
         <div class="col s12 m4">
           <div class="card horizontal">
