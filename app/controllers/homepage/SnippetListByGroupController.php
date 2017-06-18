@@ -8,9 +8,9 @@ use StdClass;
 use Snippet\Utility\PaginationFactory;
 
 
-class SnippetListController extends BaseHomepageController
+class SnippetListByGroupController extends BaseHomepageController
 {
-    private function getFeaturedSnippets($offset, $take)
+    private function getSnippets($offset, $take)
     {
         $user = $this->session->has('user') ? $this->session->get('user') : null;
         $snippetListTask = new SnippetListTask($this->request,
@@ -23,10 +23,9 @@ class SnippetListController extends BaseHomepageController
     }
 
     /**
-     * List all snippet that user has access to it. For non-registered
-     * user it means only snippet marked as public
+     * List all snippet in a group that user has access to it
      */
-    public function indexAction()
+    private function listAvailableSnippetInGroup($groupName, $user)
     {
         $take = $this->config->snippetsPerPage;
         $page = $this->request->getQuery('page', 'int', 0);
@@ -48,4 +47,35 @@ class SnippetListController extends BaseHomepageController
         $this->view->totalSnippets = $totalSnippets;
     }
 
+    private function forwardTo($routeName)
+    {
+        //TODO:implements this as middleware
+        $this->dispatcher->forward([
+            'namespace' => 'Snippet\Controllers\Homepage',
+            'controller' => $routeName,
+            'action' => 'index'
+        ]);
+    }
+
+    /**
+     * List all snippet in a group that user has access to it
+     */
+    public function indexAction($groupName)
+    {
+        if ($this->session->has('user')) {
+            $user = $this->session->has('user');
+            if ($user->hasAccess($groupName)) {
+                $this->listAvailableSnippetInGroup($groupName);
+            } else {
+                $this->forwardTo('not-allwed');
+            }
+        } else {
+            if ($groupName === 'public') {
+                $this->forwardTo('snippet-list');
+            } else {
+                $this->forwardTo('sign-in');
+            }
+
+        }
+    }
 }

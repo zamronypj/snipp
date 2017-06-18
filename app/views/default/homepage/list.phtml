@@ -1,0 +1,23 @@
+<div class="row">
+    <?php foreach ($snippets as $snippet) : ?>
+    <div class="col s12 m4">
+      <div class="card horizontal">
+        <div class="card-image">
+          <img src="http://img.juhara.com/80x150.png">
+        </div>
+        <div class="card-stacked">
+          <div class="card-title"><?= $snippet->title; ?></div>
+          <div class="card-content">
+            <p><?= $snippet->updated_at; ?></p>
+          </div>
+          <div class="card-action">
+            <a href="<?= $this->url->get([ 'for' => 'snippet-detail', 'snippetId' => $snippet->id ]); ?>">View</a>
+            <?php if (isset($snippet->creator->username)) : ?>
+                <a href="<?= $this->url->get([ 'for' => 'snippet-list-by-user', 'username' => $snippet->creator->username ]); ?>"><div class="chip"><img src="http://img.juhara.com/50x50.png" alt="Contact Person"><?= $snippet->creator->username; ?></div></a>
+          <?php endif ?>
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php endforeach; ?>
+</div>

@@ -65,4 +65,20 @@ class Users extends Model
         ]);
         return (int) $row[0]->total;
     }
+
+    public function hasAccess($groupName) {
+        $phql = 'SELECT COUNT(Snippet\Models\Groups.id) AS total FROM Snippet\Models\Groups ' .
+                'INNER JOIN Snippet\Models\UserGroups ' .
+                'ON  Snippet\Models\Groups.id = Snippet\Models\UserGroups.group_id ' .
+                'INNER JOIN Snippet\Models\Users ' .
+                'ON  Snippet\Models\Users.id  = Snippet\Models\UserGroups.user_id ' .
+                'WHERE Snippet\Models\Users.id = :userId: AND Snippet\Models\Groups.name = :groupName:' .
+                'LIMIT 1';
+        $modelsManager = $this->getModelsManager();
+        $row = $modelsManager->executeQuery($phql, [
+            'userId' => $this->id,
+            'groupName' => $groupName
+        ]);
+        return ((int) $row[0]->total > 0);
+    }
 }

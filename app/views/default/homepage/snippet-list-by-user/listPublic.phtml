@@ -1,0 +1,5 @@
+<div class="container medium-top-padding">
+    <h5 class="orange-text darken-4">Snippets by <?= $username; ?></h5>
+    <?= $this->view->getPartial('list', [ 'snippets' => $snippets ]); ?>
+    <?= $page->buildPagination(); ?>
+</div>
