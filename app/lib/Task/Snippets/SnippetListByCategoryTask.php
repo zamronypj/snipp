@@ -36,4 +36,17 @@ class SnippetListByCategoryTask extends BaseSnippetTask
         return $this->listSnippetInGroupByCategory('public', $categoryName,  $offset, $take);
     }
 
+    /**
+     * count snippets in a category that belong to a group
+     */
+    public function countSnippetInGroupByCategory($groupName, $categoryName)
+    {
+        $snippet = new Snippets();
+        return $snippet->countSnippetsByCategoryAndGroup($categoryName, $groupName);
+    }
+
+    public function countPublicSnippetInCategory($categoryName)
+    {
+        return $this->countSnippetInGroupByCategory('public', $categoryName);
+    }
 }

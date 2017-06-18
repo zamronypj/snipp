@@ -1,0 +1,5 @@
+<?php if ($currentPage < ($totalPage-1)) : ?>
+    <li class="waves-effect"><a href="<?= $currentUrl; ?>?page=<?= $page; ?>"><i class="material-icons">chevron_right</i></a></li>
+<?php else : ?>
+    <li class="disabled"><i class="material-icons">chevron_right</i></li>
+<?php endif; ?>

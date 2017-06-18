@@ -45,6 +45,25 @@ class Snippets extends Model
         ]));
     }
 
+    public function countSnippetsByCategoryAndGroup(string $categoryName, string $groupName)
+    {
+        $phql = 'SELECT COUNT(Snippet\Models\Snippets.id) AS total FROM Snippet\Models\Snippets ' .
+                'JOIN Snippet\Models\Acls ' .
+                'ON Snippet\Models\Acls.snippet_id = Snippet\Models\Snippets.id ' .
+                'JOIN Snippet\Models\Groups ' .
+                'ON Snippet\Models\Groups.id = Snippet\Models\Acls.group_id ' .
+                'JOIN Snippet\Models\SnippetCategories ' .
+                'ON Snippet\Models\SnippetCategories.snippet_id = Snippet\Models\Snippets.id ' .
+                'JOIN Snippet\Models\Categories ' .
+                'ON Snippet\Models\Categories.id = Snippet\Models\SnippetCategories.category_id ' .
+                'WHERE Snippet\Models\Categories.name = :categoryName: AND Snippet\Models\Groups.name = :groupName: ';
+        $modelsManager = $this->getModelsManager();
+        return $modelsManager->executeQuery($phql, [
+            'categoryName' => $categoryName,
+            'groupName' => $groupName
+        ]);
+    }
+
     public function findSnippetsByCategoryAndGroup(string $categoryName, string $groupName, int $offset, int $take)
     {
         $phql = 'SELECT Snippet\Models\Snippets.* FROM Snippet\Models\Snippets ' .

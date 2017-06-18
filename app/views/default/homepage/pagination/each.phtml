@@ -1,0 +1,5 @@
+<?php if($page === $currentPage) : ?>
+    <li class="active"><a><?= $page + 1; ?></a></li>
+<?php else : ?>
+    <li class="waves-effect"><a href="<?= $currentUrl; ?>?page=<?= $page; ?>"><?= $page + 1; ?></a></li>
+<?php endif; ?>

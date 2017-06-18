@@ -4,7 +4,7 @@ namespace Snippet\Controllers\Homepage;
 use Phalcon\Filter;
 use Snippet\Controllers\Homepage\BaseHomepageController;
 use Snippet\Task\Snippets\SnippetListByCategoryTask;
-use StdClass;
+use Snippet\Utility\PaginationFactory;
 
 /**
  * List all snippet in specific category that user has access to it. For non-registered
@@ -20,17 +20,16 @@ class SnippetListByCategoryController extends BaseHomepageController
     public function indexAction($categoryName)
     {
         $take = $this->config->snippetsPerPage;
-        $page = $this->request->getQuery('page', 'int', 1);
-        $page = $page >= 1 ? $page : 1;
-        $paginator = new StdClass();
-        $paginator->before = $page - 1;
-        $paginator->next = $page + 1;
-        $offset = ($page-1) * $take;
+        $offset = $this->request->getQuery('offset', 'int', 0);
+        $offset = $offset < 0 ? 0 : $offset;
+
         $snippetListTask = new SnippetListByCategoryTask($this->request,
                                 $this->security,
                                 $this->logger);
         $this->view->categoryName = $categoryName;
         $this->view->snippets = $snippetListTask->listPublicSnippetInCategory($categoryName, $offset, $take);
+        $totalSnippets = (int)(($snippetListTask->countPublicSnippetInCategory($categoryName))[0]->total);
+        $paginator = (new PaginationFactory())->create('http://fux.com', $this->view, floor($offset/$take), $totalSnippets, $take);
         $this->view->page = $paginator;
     }
 
