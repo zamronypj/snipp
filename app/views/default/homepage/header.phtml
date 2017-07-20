@@ -1,9 +1,13 @@
+<?php
+   $homeUrl =  $this->url->get(['for' => 'home']);
+   $snippetListUrl = $this->url->get(['for' => 'snippet-list']);
+?>
   <nav class="orange lighten-1" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="<?= $this->url->get('/'); ?>" class="brand-logo"><?= $appName; ?></a>
+      <a id="logo-container" href="<?= $homeUrl; ?>" class="brand-logo"><?= $appName; ?></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="<?= $this->url->get(['for' => 'home']); ?>"><i class="material-icons left">home</i>Home</a></li>
-        <li><a href="<?= $this->url->get(['for' => 'snippet-list']); ?>"><i class="material-icons left">list</i>Snippets</a></li>
+        <li><a href="<?= $homeUrl; ?>"><i class="material-icons left">home</i>Home</a></li>
+        <li><a href="<?= $snippetListUrl; ?>"><i class="material-icons left">list</i>Snippets</a></li>
 
         <?php if (isset($user)) : ?>
         <li><a class="userprofile" data-activates="dropdownprofile" href="#!"><i class="material-icons left">account_circle</i><?= $user->username; ?><i class="material-icons right">arrow_drop_down</i></a>
@@ -37,8 +41,8 @@
               </div>
             </li>
         <?php endif; ?>
-        <li><a class="waves-effect" href="<?= $this->url->get(['for' => 'home']); ?>"><i class="material-icons">home</i>Home</a></li>
-        <li><a class="waves-effect" href="<?= $this->url->get(['for' => 'snippet-list']); ?>"><i class="material-icons">list</i>Snippets</a></li>
+        <li><a class="waves-effect" href="<?= $homeUrl; ?>"><i class="material-icons">home</i>Home</a></li>
+        <li><a class="waves-effect" href="<?= $snippetListUrl; ?>"><i class="material-icons">list</i>Snippets</a></li>
 
         <?php if (isset($user)) : ?>
             <li><div class="divider"></div></li>
