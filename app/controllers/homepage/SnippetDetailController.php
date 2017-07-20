@@ -14,7 +14,7 @@ class SnippetDetailController extends BaseHomepageController
 
         if (isset($foundSnippet)) {
             $this->view->snippet = $foundSnippet;
-            $this->view->customJs = $this->view->getPartial('snippet-detail/highlight.js', ['theme' => $this->config->theme ]);
+            $this->view->customJs = $this->view->getPartial('snippet-detail/snippet.detail.js', ['theme' => $this->config->theme ]);
         } else {
             $this->notFound();
         }

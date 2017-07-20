@@ -1,5 +1,5 @@
 (function($){
-  $(function(){
+    $(function(){
         var clipboard = new Clipboard('#btnCopySnippet');
 
         clipboard.on('success', function(e) {
@@ -35,33 +35,33 @@
 
             var param = prepareParam(snippetValue, snippetTitle, csrfToken, categories);
             $.post('/create', param).done(function(response){
-                  formContainer.addClass('hidden');
-                  statusContainer.removeClass('hidden');
-                  resultContainer.removeClass('hidden');
-                  errorContainer.addClass('hidden');
+                formContainer.addClass('hidden');
+                statusContainer.removeClass('hidden');
+                resultContainer.removeClass('hidden');
+                errorContainer.addClass('hidden');
 
-                  var snippetUrlAnchor = $('#snippetUrl');
-                  snippetUrlAnchor.attr('href', response.data.snippetUrl);
-                  snippetUrlAnchor.html(response.data.snippetUrl);
+                var snippetUrlAnchor = $('#snippetUrl');
+                snippetUrlAnchor.attr('href', response.data.snippetUrl);
+                snippetUrlAnchor.html(response.data.snippetUrl);
 
-                  var csrfTokenElem = $('#csrfToken');
-                  csrfTokenElem.attr('name', response.csrfToken.name);
-                  csrfTokenElem.attr('value', response.csrfToken.value);
+                var csrfTokenElem = $('#csrfToken');
+                csrfTokenElem.attr('name', response.csrfToken.name);
+                csrfTokenElem.attr('value', response.csrfToken.value);
 
-                  var clipboardBtn = $('#btnCopySnippet');
-                  clipboardBtn.removeClass('hidden');
-                  clipboardBtn.html('Copy Snippet URL');
-                  clipboardBtn.attr('data-clipboard-text', response.data.snippetUrl);
+                var clipboardBtn = $('#btnCopySnippet');
+                clipboardBtn.removeClass('hidden');
+                clipboardBtn.html('Copy Snippet URL');
+                clipboardBtn.attr('data-clipboard-text', response.data.snippetUrl);
 
-                  loader.addClass('hidden');
+                loader.addClass('hidden');
             }).fail(function(xhr, status, response){
-                  formContainer.addClass('hidden');
-                  statusContainer.removeClass('hidden');
-                  resultContainer.addClass('hidden');
-                  errorContainer.removeClass('hidden');
-                  $('#btnCopySnippet').addClass('hidden');
-                  $('#errorMsg').html(response);
-                  loader.addClass('hidden');
+                formContainer.addClass('hidden');
+                statusContainer.removeClass('hidden');
+                resultContainer.addClass('hidden');
+                errorContainer.removeClass('hidden');
+                $('#btnCopySnippet').addClass('hidden');
+                $('#errorMsg').html(response);
+                loader.addClass('hidden');
             });
         };
 
@@ -116,6 +116,5 @@
         });
         categoryListSvc.getDataFromBackend({});
 
-
-  }); // end of document ready
+    }); // end of document ready
 })(jQuery); // end of jQuery name space

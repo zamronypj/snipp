@@ -1,0 +1,128 @@
+.icon-block {
+    padding: 0 15px;
+    .material-icons {
+        font-size: inherit;
+    }
+}
+
+.page-footer {
+    padding-top :10px;
+
+    .container .row {
+       margin-bottom:0px;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.small-bottom-space {
+    margin-bottom: 10px;
+}
+
+h1.header {
+    font-size: 3.2rem;
+}
+.snippetapp {
+
+    .input-field {
+        /* label color */
+        label {
+            color: $secondary-color;
+        }
+        /* label focus color */
+        textarea:focus + label {
+             color: $main-color;
+        }
+
+        /* label focus color */
+        input[type=text]:focus + label,
+        input[type=email]:focus + label,
+        input[type=checkbox]:focus + label,
+        input[type=password]:focus + label {
+             color: $main-color;
+        }
+
+        input[type=checkbox]:checked + label {
+            &:before {
+                border-right : 2px solid $main-color;
+                border-bottom : 2px solid $main-color;
+            }
+        }
+
+        textarea {
+            &:focus {
+                 border-bottom: 1px solid $main-color;
+                 box-shadow: 0 1px 0 0 $main-color;
+            }
+            /* valid color */
+            &.valid {
+                border-bottom: 1px solid $main-color;
+                box-shadow: 0 1px 0 0 $main-color;
+            }
+
+            /* invalid color */
+            &.invalid {
+                border-bottom: 1px solid $main-color;
+                box-shadow: 0 1px 0 0 $main-color;
+            }
+
+            &.materialize-textarea {
+                border-bottom: 1px solid  $secondary-color;
+            }
+        }
+
+        input[type=text],
+        input[type=email],
+        input[type=password] {
+            border-bottom: 1px solid  $secondary-color;
+            /* label underline focus color */
+            &:focus {
+                 border-bottom: 1px solid $main-color;
+                 box-shadow: 0 1px 0 0 $main-color;
+            }
+
+            /* valid color */
+            &.valid {
+                 border-bottom: 1px solid $main-color;
+                 box-shadow: 0 1px 0 0 $main-color;
+            }
+
+            /* invalid color */
+            &.invalid {
+                 border-bottom: 1px solid $main-color;
+                 box-shadow: 0 1px 0 0 $main-color;
+            }
+        }
+
+        /* icon prefix focus color */
+        .prefix.active {
+            color: $main-color;
+        }
+
+        .chips {
+            border-bottom:1px solid $secondary-color;
+            text-align: left;
+            &.focus {
+                border-bottom: 1px solid $main-color;
+                box-shadow: 0 1px 0 0 $main-color;
+            }
+
+            .chip {
+                &.selected {
+                    background-color: $secondary-color;
+                }
+            }
+        }
+
+        .dropdown-content li > a, .dropdown-content li > span {
+          color: $main-color;
+        }
+
+    }
+}
+
+.medium-top-padding {
+    padding-top: 40px;
+}

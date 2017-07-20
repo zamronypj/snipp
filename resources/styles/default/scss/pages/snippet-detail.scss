@@ -1,0 +1,16 @@
+.code-container {
+
+}
+
+.raw-code-container {
+    textarea {
+        &:focus {
+             border-top: 1px solid $main-color;
+        }
+
+        &.materialize-textarea {
+            border-top: 1px solid  $secondary-color;
+            min-height:25rem;
+        }
+    }
+}

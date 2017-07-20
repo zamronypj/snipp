@@ -1,10 +1,16 @@
-<div class="container medium-top-padding">
+<div class="container snippetapp medium-top-padding">
     <h5 class="orange-text darken-4">Snippet <?= $snippet->title; ?></h5>
     <div class="snippet-info"><?= $this->dateSvc->humanFriendly($snippet->updated_at, 'Y-m-d H:i:s'); ?>
         <?php if (isset($snippet->creator->detail)) : ?>
-            by <?= $snippet->creator->detail->firstname; ?> <?= $snippet->creator->detail->lastname; ?>
+            by <a href="<?= $this->url->get([
+                'for' => 'snippet-list-by-user',
+                'username' => $snippet->creator->username
+            ]); ?>"><?= $snippet->creator->detail->firstname; ?> <?= $snippet->creator->detail->lastname; ?></a>
         <?php elseif(isset($snippet->creator->username)) : ?>
-            by <?= $snippet->creator->username; ?>
+            by <a href="<?= $this->url->get([
+                'for' => 'snippet-list-by-user',
+                'username' => $snippet->creator->username
+            ]); ?>"><?= $snippet->creator->username; ?></a>
         <?php endif; ?>
         <div class="categories">
         <?php foreach ($snippet->categories as $category ):?>
@@ -15,7 +21,24 @@
         <?php endforeach;?>
         </div>
     </div>
-    <pre>
-        <code><?= $snippet->content; ?></code>
-    </pre>
+    <div class="row">
+        <div class="input-field col s4 m2">
+            <input type="checkbox" id="toggle-raw" class="orange show-raw">
+            <label for="toggle-raw">Raw</label>
+        </div>
+        <div class="input-field col s4">
+            <button id="btnCopyCode" type="button" class="btn waves-effect waves-light orange">Copy</button>
+        </div>
+    </div>
+    <div class="row code-container">
+        <pre>
+            <code><?= $snippet->content; ?></code>
+        </pre>
+    </div>
+    <div class="row raw-code-container hide">
+        <div class="input-field col s12">
+            <textarea id="raw-code" class="materialize-textarea"><?= $snippet->content; ?></textarea>
+        </div>
+    </div>
+
 </div>

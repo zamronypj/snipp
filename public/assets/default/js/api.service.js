@@ -1,10 +1,13 @@
+
+'use strict';
+
 /**
  * class that encapsulate get request
  * using jquery ajax request
  * This is part of snippet application https://github.com/zamronypj/snipp
  * @author Zamrony P. Juhara <zamronypj@yahoo.com>
  */
-'use strict'
+
 var ApiService = (function () {
 
     /**
