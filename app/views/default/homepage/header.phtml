@@ -2,20 +2,20 @@
     <div class="nav-wrapper container">
       <a id="logo-container" href="<?= $this->url->get('/'); ?>" class="brand-logo"><?= $appName; ?></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="<?= $this->url->get('/'); ?>"><i class="material-icons left">home</i>Home</a></li>
-        <li><a href="<?= $this->url->get('list'); ?>"><i class="material-icons left">list</i>Snippets</a></li>
+        <li><a href="<?= $this->url->get(['for' => 'home']); ?>"><i class="material-icons left">home</i>Home</a></li>
+        <li><a href="<?= $this->url->get(['for' => 'snippet-list']); ?>"><i class="material-icons left">list</i>Snippets</a></li>
 
         <?php if (isset($user)) : ?>
         <li><a class="userprofile" data-activates="dropdownprofile" href="#!"><i class="material-icons left">account_circle</i><?= $user->username; ?><i class="material-icons right">arrow_drop_down</i></a>
             <ul id="dropdownprofile" class="dropdown-content">
-                <li><a class=" orange-text" href="<?= $this->url->get('signout'); ?>"><i class="material-icons left">perm_identity</i>Profile</a></li>
-                <li><a class=" orange-text" href="<?= $this->url->get('your-snippets'); ?>"><i class="material-icons left">view_list</i>Snippets</a></li>
+                <li><a class=" orange-text" href="<?= $this->url->get(['for' => 'user-profile']); ?>"><i class="material-icons left">perm_identity</i>Profile</a></li>
+                <li><a class=" orange-text" href="<?= $this->url->get(['for' => 'snippet-list-by-current-user']); ?>"><i class="material-icons left">view_list</i>Snippets</a></li>
                 <li class="divider"></li>
-                <li><a class=" orange-text" href="<?= $this->url->get('signout'); ?>"><i class="material-icons left">input</i>Sign Out</a></li>
+                <li><a class=" orange-text" href="<?= $this->url->get(['for' => 'signout']); ?>"><i class="material-icons left">input</i>Sign Out</a></li>
             </ul>
         </li>
         <?php else : ?>
-        <li><a href="<?= $this->url->get('signin'); ?>"><i class="material-icons left">account_circle</i>Sign In</a></li>
+        <li><a href="<?= $this->url->get(['for' => 'signin']); ?>"><i class="material-icons left">account_circle</i>Sign In</a></li>
         <?php endif; ?>
 
       </ul>
@@ -37,15 +37,17 @@
               </div>
             </li>
         <?php endif; ?>
-        <li><a class="waves-effect" href="<?= $this->url->get('/'); ?>"><i class="material-icons">home</i>Home</a></li>
-        <li><a class="waves-effect" href="<?= $this->url->get('list'); ?>"><i class="material-icons">list</i>Snippets</a></li>
+        <li><a class="waves-effect" href="<?= $this->url->get(['for' => 'home']); ?>"><i class="material-icons">home</i>Home</a></li>
+        <li><a class="waves-effect" href="<?= $this->url->get(['for' => 'snippet-list']); ?>"><i class="material-icons">list</i>Snippets</a></li>
 
         <?php if (isset($user)) : ?>
             <li><div class="divider"></div></li>
             <!-- <li><a class="subheader">Subheader</a></li> -->
-            <li><a class="waves-effect" href="<?= $this->url->get('signout'); ?>"><i class="material-icons left">input</i>Sign Out</a></li>
+            <li><a class="waves-effect" href="<?= $this->url->get(['for' => 'snippet-list-by-current-user']); ?>"><i class="material-icons left">view_list</i>Snippets</a></li>
+            <li><a class="waves-effect" href="<?= $this->url->get(['for' => 'signout']); ?>"><i class="material-icons left">input</i>Sign Out</a></li>
         <?php else: ?>
-            <li><a class="waves-effect" href="<?= $this->url->get('signin'); ?>"><i class="material-icons left">account_circle</i>Sign In</a></li>
+            <li><a class="waves-effect" href="<?= $this->url->get(['for' => 'signin']); ?>"><i class="material-icons left">account_circle</i>Sign In</a></li>
+            <li><a class="waves-effect" href="<?= $this->url->get(['for' => 'signup']); ?>"><i class="material-icons left">account_circle</i>Sign Up</a></li>
         <?php endif; ?>
 
       </ul>

@@ -9,8 +9,8 @@ class HomeController extends BaseHomepageController
     private function getFeaturedSnippets()
     {
         return Snippets::find([
-            'order' => 'updated_at DESC',
-            'limit' => 7
+            'order' => 'updated_at ' . $this->config->featuredSnippetsOrder,
+            'limit' => $this->config->featuredSnippetsPerPage
         ]);
     }
 

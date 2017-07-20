@@ -22,7 +22,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <div class="chips chips-autocomplete"></div>                            
+                            <div class="chips chips-autocomplete"></div>
                         </div>
                     </div>
                     <div id="progressContainer" class="row hidden">
@@ -64,5 +64,8 @@
                 </li>
             <?php endforeach; ?>
         </ul>
+        <div class="row center">
+            <a href="<?= $this->url->get(['for' => 'snippet-list' ]); ?>" class="btn-large waves-effect waves-light orange">View More</a>
+        </div>
     <?php endif; ?>
 </div>
