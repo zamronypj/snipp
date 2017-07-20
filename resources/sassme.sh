@@ -23,4 +23,4 @@ then
     exit 2;
 fi
 
-sass $sourceScss $targetCss
+sass $sourceScss $targetCss --style compressed

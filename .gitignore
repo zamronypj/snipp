@@ -7,3 +7,4 @@ dev/
 resources/.sass-cache
 public/assets/**/css/style.css
 public/assets/**/css/style.css.map
+public/.htaccess
