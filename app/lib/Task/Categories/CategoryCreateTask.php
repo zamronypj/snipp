@@ -10,7 +10,7 @@ use StdClass;
  */
 class CategoryCreateTask extends BaseCategoryTask
 {
-    private function createCategory(string $categoryName)
+    private function createCategory($categoryName)
     {
         $category = new Categories();
         $category->name = $categoryName;
