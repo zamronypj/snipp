@@ -27,7 +27,7 @@ class Pagination implements PaginationInterface
      * Build pagination string
      * @return string
      */
-    private function renderPagination(int $currentPage, int $totalPage, int $itemsPerPage, int $totalItems)
+    private function renderPagination($currentPage, $totalPage, $itemsPerPage, $totalItems)
     {
         $output = [];
         if (is_callable($this->beginPaginationCallback)) {
