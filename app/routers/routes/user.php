@@ -30,6 +30,18 @@ $router->addGet('/signup', [
     'action' => 'index'
 ])->setName('signup');
 
+$router->addGet('/profile', [
+    'namespace' => 'Snippet\Controllers\Homepage',
+    'controller' => 'user-profile',
+    'action' => 'index'
+])->setName('user-profile');
+
+$router->addPost('/profile/update', [
+    'namespace' => 'Snippet\Controllers\Homepage',
+    'controller' => 'update-user-profile',
+    'action' => 'update'
+])->setName('update-user-profile');
+
 $router->addPost('/register', [
     'namespace' => 'Snippet\Controllers\Homepage',
     'controller' => 'sign-up',

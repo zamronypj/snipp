@@ -1,0 +1,10 @@
+<div class="container medium-top-padding">
+    <h5 class="orange-text darken-4"><?= $currentUser->username; ?></h5>
+
+    <form action="<?= $this->url->get(['for' => 'update-user-profile']); ?>" method="post">
+        <input type="hidden" name="userId" value="<?= $currentUser->id; ?>">
+        <input type="text" name="firstname" value="<?= $currentUser->detail->firstname; ?>">
+        <input type="text" name="lastname" value="<?= $currentUser->detail->lastname; ?>">
+        <input type="submit" name="submit" class="btn btn-large">
+    </form>
+</div>
