@@ -44,7 +44,7 @@ class SnippetListByUserTask extends BaseSnippetTask
     /**
      * count snippets created by a user that belong to a group
      */
-    public function countSnippetInGroupByUsername($groupName, $username)
+    public function countSnippetInGroupByUsername($groupName, $username,  $offset, $take)
     {
         $group = Groups::findFirstByName($groupName);
         $user = Users::findFirstByUsername($username);
