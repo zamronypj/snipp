@@ -12,10 +12,9 @@ class SnippetListByCategoryTask extends BaseSnippetTask
     /**
      * list all snippets created by a user
      */
-    public function list($categoryName, $offset, $take)
+    public function listSnippetByCategory($categoryName, $offset, $take)
     {
         $category = Categories::findFirstByName($categoryName);
-
         return $category->getSnippets([
             'limit' => $take,
             'offset' => $offset

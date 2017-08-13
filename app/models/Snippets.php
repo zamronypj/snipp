@@ -45,7 +45,7 @@ class Snippets extends Model
         ]));
     }
 
-    public function countSnippetsByCategoryAndGroup(string $categoryName, string $groupName)
+    public function countSnippetsByCategoryAndGroup($categoryName, $groupName)
     {
         $phql = 'SELECT COUNT(Snippet\Models\Snippets.id) AS total FROM Snippet\Models\Snippets ' .
                 'INNER JOIN Snippet\Models\Acls ' .
@@ -66,7 +66,7 @@ class Snippets extends Model
         return (int) $row[0]->total;
     }
 
-    public function findSnippetsByCategoryAndGroup(string $categoryName, string $groupName, int $offset, int $take)
+    public function findSnippetsByCategoryAndGroup($categoryName, $groupName, $offset, $take)
     {
         $phql = 'SELECT Snippet\Models\Snippets.* FROM Snippet\Models\Snippets ' .
                 'INNER JOIN Snippet\Models\Acls ' .
