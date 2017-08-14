@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title><?= (isset($pageTitle) ? $pageTitle . ' - ' . $appName : $appName); ?></title>
 
-  <meta property="og:url" content="<?= $url->getBaseUri(); ?>" />
-  <meta name="twitter:url" content="<?= $url->getBaseUri(); ?>" />
+  <meta property="og:url" content="<?= $this->url->getBaseUri(); ?>" />
+  <meta name="twitter:url" content="<?= $this->url->getBaseUri(); ?>" />
 
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
