@@ -11,6 +11,8 @@ class BaseHomepageController extends BaseController
         $this->view->setViewsDir(VIEWS_PATH. $this->config->theme. '/homepage/');
         $this->view->theme = $this->config->theme;
         $this->view->appName = $this->config->appName;
+        $this->view->appDefaultDescription = $this->config->appDefaultDescription;
+        $this->view->appDefaultKeywords = $this->config->appDefaultKeywords;
         $this->view->appUrl = $this->config->appUrl;
         $this->view->user = $this->session->has('user') ? $this->session->get('user') : null;
         if ($this->session->has('user')) {

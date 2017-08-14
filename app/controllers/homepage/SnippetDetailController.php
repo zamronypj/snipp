@@ -13,6 +13,7 @@ class SnippetDetailController extends BaseHomepageController
         $foundSnippet = $snippetDetailTask->viewDetail($snippetId, $user);
 
         if (isset($foundSnippet)) {
+            $this->view->pageTitle = $foundSnippet->title;
             $this->view->snippet = $foundSnippet;
             $this->view->customJs = $this->view->getPartial('snippet-detail/snippet.detail.js', ['theme' => $this->config->theme ]);
         } else {

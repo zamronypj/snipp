@@ -5,6 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title><?= (isset($pageTitle) ? $pageTitle . ' - ' . $appName : $appName); ?></title>
 
+  <meta property="og:url" content="<?= $url->getBaseUri(); ?>" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="<?= (isset($pageTitle) ? $pageTitle . ' - ' . $appName : $appName); ?>" />
+  <?php if (isset($pageDescription)) : ?>
+      <meta property="og:description" content="<?= $pageDescription; ?>" />
+      <meta name="description" content="<?= $pageDescription; ?>"/>
+  <?php else : ?>
+      <meta property="og:description" content="<?= $appDefaultDescription; ?>" />
+      <meta name="description" content="<?= $appDefaultDescription; ?>"/>
+  <?php endif; ?>
+  <?php if (isset($pageKeywords)) : ?>
+      <meta property="og:keywords" content="<?= $pageKeywords; ?>" />
+      <meta name="keywords" content="<?= $pageKeywords; ?>"/>
+  <?php else : ?>
+      <meta property="og:keywords" content="<?= $appDefaultKeywords; ?>" />
+      <meta name="keywords" content="<?= $appDefaultKeywords; ?>"/>
+  <?php endif; ?>
+  <meta property="og:image" content="http://img.juhara.com/100x100.png" />
+
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="/assets/<?= $theme; ?>/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
