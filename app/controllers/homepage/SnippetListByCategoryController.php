@@ -19,22 +19,22 @@ class SnippetListByCategoryController extends BaseHomepageController
      */
     public function indexAction($categoryName)
     {
+        $sanitizedCategoryName = $this->filter->sanitize($categoryName, 'string');
         $take = $this->config->snippetsPerPage;
         $page = $this->request->getQuery('page', 'int', 0);
         $page = $page < 0 ? 0 : $page;
         $offset = $page * $take;
-
         $snippetListTask = new SnippetListByCategoryTask($this->request,
                                 $this->security,
                                 $this->logger);
-        $this->view->categoryName = $categoryName;
-        $this->view->snippets = $snippetListTask->listPublicSnippetInCategory($categoryName, $offset, $take);
-        $totalSnippets = $snippetListTask->countPublicSnippetInCategory($categoryName);
+        $this->view->categoryName = $sanitizedCategoryName;
+        $this->view->snippets = $snippetListTask->listPublicSnippetInCategory($sanitizedCategoryName, $offset, $take);
+        $totalSnippets = $snippetListTask->countPublicSnippetInCategory($sanitizedCategoryName);
         $url = $this->url;
-        $currentUrlCallback = function($page) use ($categoryName, $url) {
+        $currentUrlCallback = function($page) use ($sanitizedCategoryName, $url) {
             return $url->get([
                 'for' => 'snippet-list-by-category',
-                'categoryName' => $categoryName
+                'categoryName' => $sanitizedCategoryName
             ]);
         };
         $paginator = (new PaginationFactory())->create(floor($offset/$take),
@@ -44,6 +44,7 @@ class SnippetListByCategoryController extends BaseHomepageController
                                                        $currentUrlCallback);
         $this->view->page = $paginator;
         $this->view->totalSnippets = $totalSnippets;
+        $this->view->pageTitle = 'Snippet list in category ' . $sanitizedCategoryName;
     }
 
 }
