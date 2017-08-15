@@ -9,6 +9,7 @@ class SignInController extends BaseHomepageController
     public function indexAction()
     {
         $this->view->token = $this->tokenGenerator->generateCsrfToken();
+        $this->view->pageTitle = 'Sign In';
     }
 
     private function handleUserLoginAction()

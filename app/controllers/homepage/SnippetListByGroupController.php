@@ -62,15 +62,16 @@ class SnippetListByGroupController extends BaseHomepageController
      */
     public function indexAction($groupName)
     {
+        $sanitizedGroupName = $this->filter->sanitize($groupName, 'string');
         if ($this->session->has('user')) {
             $user = $this->session->has('user');
-            if ($user->hasAccess($groupName)) {
-                $this->listAvailableSnippetInGroup($groupName);
+            if ($user->hasAccess($sanitizedGroupName)) {
+                $this->listAvailableSnippetInGroup($sanitizedGroupName);
             } else {
-                $this->forwardTo('not-allwed');
+                $this->forwardTo('not-allowed');
             }
         } else {
-            if ($groupName === 'public') {
+            if ($sanitizedGroupName === 'public') {
                 $this->forwardTo('snippet-list');
             } else {
                 $this->forwardTo('sign-in');
