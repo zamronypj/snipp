@@ -1,12 +1,14 @@
+<?php
+  $currentUrl = preg_replace('{/$}', '', $appUrl) . $this->router->getRewriteUri();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title><?= (isset($pageTitle) ? $pageTitle . ' - ' . $appName : $appName); ?></title>
-
-  <meta property="og:url" content="<?= $this->url->getBaseUri(); ?>" />
-  <meta name="twitter:url" content="<?= $this->url->getBaseUri(); ?>" />
+  <meta property="og:url" content="<?= $currentUrl; ?>" />
+  <meta name="twitter:url" content="<?= $currentUrl; ?>" />
 
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
@@ -35,9 +37,9 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="/assets/<?= $theme; ?>/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="/assets/<?= $theme; ?>/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="/assets/<?= $theme; ?>/js/highlight/styles/default.css" rel="stylesheet" >
+  <link href="<?= $appUrl; ?>assets/<?= $theme; ?>/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="<?= $appUrl; ?>assets/<?= $theme; ?>/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="<?= $appUrl; ?>assets/<?= $theme; ?>/js/highlight/styles/default.css" rel="stylesheet" >
 </head>
 <body>
   <?= $this->partial('header'); ?>
@@ -45,9 +47,9 @@
   <?= $this->partial('footer'); ?>
 
   <!--  Scripts-->
-  <script src="/assets/<?= $theme; ?>/js/jquery.min.js"></script>
-  <script src="/assets/<?= $theme; ?>/js/materialize.min.js"></script>
-  <script src="/assets/<?= $theme; ?>/js/init.js"></script>
+  <script src="<?= $appUrl; ?>assets/<?= $theme; ?>/js/jquery.min.js"></script>
+  <script src="<?= $appUrl; ?>assets/<?= $theme; ?>/js/materialize.min.js"></script>
+  <script src="<?= $appUrl; ?>assets/<?= $theme; ?>/js/init.js"></script>
   <?= isset($customJs) ? $customJs : ''; ?>
   </body>
 </html>
